@@ -1,6 +1,24 @@
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
+<script>
+/* Always open at the top (mobile + desktop): no browser scroll restoration,
+   no jump to a #section left in the URL by an in-page link. */
+(function () {
+  try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
+  function top() {
+    var h = document.documentElement, prev = h.style.scrollBehavior;
+    h.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    h.style.scrollBehavior = prev;
+  }
+  if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
+  top();
+  document.addEventListener("DOMContentLoaded", top);
+  window.addEventListener("load", function () { top(); setTimeout(top, 0); });
+  window.addEventListener("pageshow", function (e) { if (e.persisted) top(); });
+})();
+</script>
 <meta charset="utf-8">
 <script>
   /* ================================================================
