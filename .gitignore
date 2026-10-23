@@ -1,0 +1,4 @@
+# internal notes and QA stay local (public repo)
+*.md
+qa/
+.DS_Store

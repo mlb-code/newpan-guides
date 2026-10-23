@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>
+  /* ================================================================
+     הגדרות הדף — זה המקום היחיד שצריך לשנות
+     VIDEO_URL: ריק = פוסטר + "הסרטון בקרוב".
+                קישור YouTube (watch / youtu.be / shorts / embed) = נגן YouTube מוטמע.
+                כל קישור אחר (למשל ‎.mp4) = נגן <video>.
+     MANUAL_URL: קישור ל-PDF של חוברת ההדרכה (ריק = "בקרוב").
+     SERVICE_PHONE: טלפון שירות להצגה, למשל "*1234" או "03-0000000" (ריק = "יעודכן בקרוב").
+     ================================================================ */
+  var VIDEO_URL = "";
+  var MANUAL_URL = "";
+  var SERVICE_PHONE = "";
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>איך מחברים את קו המים למקרר · Samsung RF65DB970E22EU</title>
+<meta name="description" content="מדריך מצולם, שלב אחרי שלב: חיבור קו המים למקרר Samsung RF65DB970E22EU — מה בערכה, איך מחברים לברז ולמקרר, בדיקת נזילות ושטיפה.">
+<meta name="theme-color" content="#F5F6F9">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="איך מחברים את קו המים למקרר — Samsung RF65DB970E22EU">
+<meta property="og:description" content="מדריך מצולם, שלב אחרי שלב. ניופאן — היבואן הרשמי.">
+<meta property="og:image" content="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/img/poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231428A0'/%3E%3Cpath d='M16 6s-7 7.6-7 12.6a7 7 0 0 0 14 0C23 13.6 16 6 16 6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #ECEEF2;
+    --bg-top: #F6F7F9;
+    --surface: #FFFFFF;
+    --ink: #12151C;
+    --ink-2: #3F4554;
+    --muted: #6A7080;
+    --line: #DADEE6;
+    --blue: #1428A0;
+    --blue-ink: #0E1D78;
+    --blue-50: #EEF1FB;
+    --blue-100: #D9E0F5;
+    --blue-glow: #6F87FF;
+    --red: #C4231F;
+    --red-50: #FDF1F0;
+    --bar: #2A2D35;
+    --r-card: 20px;
+    --r-img: 14px;
+    --shadow: 0 1px 2px rgba(18, 21, 28, .05), 0 6px 22px rgba(18, 21, 28, .07);
+    --shadow-lg: 0 2px 4px rgba(18, 21, 28, .06), 0 18px 48px rgba(18, 21, 28, .14);
+    --gutter: 16px;
+    --nav-h: 48px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    background: linear-gradient(180deg, var(--bg-top) 0, var(--bg) 720px) var(--bg);
+    color: var(--ink);
+    font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--blue); }
+  :focus-visible { outline: 3px solid var(--blue-glow); outline-offset: 3px; border-radius: 6px; }
+  .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+  svg.i { width: 24px; height: 24px; flex: 0 0 auto; }
+
+  /* ---------- top bar ---------- */
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
+  .topbar .logo { height: 17px; width: auto; }
+  .topbar .tag { font-size: 14px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+
+  /* ---------- chapter bar (like the video's chapter strip) ---------- */
+  .chapters { position: sticky; top: 0; z-index: 30; background: rgba(42, 45, 53, .95); }
+  @supports (backdrop-filter: blur(8px)) { .chapters { background: rgba(42, 45, 53, .88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); } }
+  .chapters .wrap { display: flex; align-items: center; gap: 2px; height: var(--nav-h); overflow-x: auto; scrollbar-width: none; }
+  .chapters .wrap::-webkit-scrollbar { display: none; }
+  .chapters a {
+    flex: 0 0 auto; color: #C7CAD3; text-decoration: none; font-size: 14px; font-weight: 500;
+    padding: 5px 10px; border-radius: 999px; white-space: nowrap; transition: background-color .2s, color .2s;
+  }
+  .chapters a:hover { color: #fff; }
+  .chapters a.is-active { background: var(--blue); color: #fff; }
+  .chapters .meter { position: absolute; bottom: 0; inset-inline: 0; height: 2px; background: rgba(255,255,255,.08); }
+  .chapters .meter span { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--blue-glow); }
+
+  /* ---------- shared type ---------- */
+  .model { font-size: 12.5px; letter-spacing: .16em; color: var(--muted); font-weight: 500; }
+  .eyebrow { font-size: 14px; color: var(--blue); font-weight: 700; margin: 0; }
+  .rule { width: 32px; height: 3px; border-radius: 2px; background: var(--blue); margin: 12px 0 14px; }
+  h1, h2, h3 { color: var(--ink); }
+  h2 { font-size: clamp(25px, 6.6vw, 38px); line-height: 1.15; font-weight: 800; margin: 6px 0 0; letter-spacing: -.005em; }
+  .section { padding: 44px 0 8px; scroll-margin-top: calc(var(--nav-h) + 8px); }
+  .section-head { margin-bottom: 20px; }
+  .section-head p.intro { margin: 0; color: var(--ink-2); max-width: 60ch; }
+  .card { background: var(--surface); border-radius: var(--r-card); box-shadow: var(--shadow); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 24px 0 8px; }
+  .hero-grid { display: grid; gap: 22px; }
+  .hero h1 { font-size: clamp(31px, 8.6vw, 54px); line-height: 1.08; font-weight: 800; margin: 0; letter-spacing: -.01em; }
+  .hero .lead { margin: 14px 0 0; font-size: 18px; color: var(--ink-2); max-width: 38ch; }
+  .hero .lead strong { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px;
+    padding: 0 20px; border-radius: 999px; font: inherit; font-size: 16px; font-weight: 600; text-decoration: none;
+    border: 0; cursor: pointer;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--blue-ink); }
+  .btn-ghost { background: var(--surface); color: var(--blue); box-shadow: inset 0 0 0 1.5px var(--blue-100); }
+  .btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--blue); }
+  .btn[aria-disabled="true"] { background: #E4E7EE; color: #7A8090; box-shadow: none; cursor: default; pointer-events: none; }
+
+  .player { position: relative; margin: 0; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #DCDFE5; box-shadow: var(--shadow-lg); }
+  .player > img { width: 100%; height: 100%; object-fit: cover; }
+  .player .veil { position: absolute; inset: 0; background: linear-gradient(to top, rgba(18, 21, 28, .55) 0, rgba(18, 21, 28, 0) 50%); }
+  .player .play {
+    position: absolute; top: 50%; left: 51.5%; transform: translate(-50%, -50%);
+    width: clamp(52px, 13vw, 72px); height: clamp(52px, 13vw, 72px); border-radius: 50%; border: 0; padding: 0;
+    background: rgba(255, 255, 255, .9); color: var(--blue); display: grid; place-items: center;
+    box-shadow: 0 8px 24px rgba(18, 21, 28, .18); cursor: not-allowed;
+  }
+  .player .play svg { width: 42%; height: 42%; margin-left: 8%; opacity: .45; }
+  .player .soon {
+    position: absolute; bottom: 12px; inset-inline-start: 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue); color: #fff; font-size: 14px; font-weight: 600; padding: 5px 12px 5px 14px; border-radius: 999px;
+  }
+  .player .soon i { width: 7px; height: 7px; border-radius: 50%; background: #9FB1FF; }
+  .player.is-live { background: #000; }
+  .player iframe, .player video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #000; }
+  .player-note { font-size: 14px; color: var(--muted); margin: 10px 2px 0; }
+
+  /* ---------- before you start ---------- */
+  .prep { display: grid; gap: 12px; }
+  .prep .card { display: flex; gap: 14px; align-items: flex-start; padding: 18px; }
+  .badge-ic { flex: 0 0 48px; width: 48px; height: 48px; border-radius: 14px; background: var(--blue-50); color: var(--blue); display: grid; place-items: center; }
+  .badge-ic svg { width: 26px; height: 26px; }
+  .prep h3 { margin: 0 0 2px; font-size: 18px; line-height: 1.3; font-weight: 700; }
+  .prep p { margin: 0; color: var(--ink-2); font-size: 16px; }
+  .band {
+    margin-top: 14px; display: flex; align-items: center; gap: 14px; padding: 16px 18px;
+    border-radius: 16px; background: var(--blue); color: #fff; font-size: 17px;
+  }
+  .band strong { font-weight: 700; }
+  .band .badge-ic { background: rgba(255, 255, 255, .14); color: #fff; flex-basis: 44px; width: 44px; height: 44px; border-radius: 12px; }
+
+  /* ---------- kit ---------- */
+  .kit { display: grid; gap: 16px; }
+  .kit-figure { position: relative; margin: 0; border-radius: var(--r-img); overflow: hidden; box-shadow: var(--shadow); background: #3A3D43; }
+  .kit-figure img { width: 100%; }
+  .pin {
+    position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%);
+    width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff;
+    font-size: 15px; font-weight: 700; line-height: 1; display: grid; place-items: center;
+    box-shadow: 0 0 0 3px #fff, 0 4px 14px rgba(0, 0, 0, .4); transition: transform .2s;
+  }
+  .kit-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .kit-list li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--surface); border-radius: 14px; box-shadow: var(--shadow); }
+  .kit-list .n { flex: 0 0 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 700; font-size: 15px; display: grid; place-items: center; }
+  .kit-list strong { display: block; font-size: 17px; font-weight: 700; line-height: 1.3; }
+  .kit-list span.d { display: block; font-size: 15px; color: var(--muted); line-height: 1.4; }
+  .kit:has(li[data-n="1"]:hover) .pin[data-n="1"],
+  .kit:has(li[data-n="2"]:hover) .pin[data-n="2"],
+  .kit:has(li[data-n="3"]:hover) .pin[data-n="3"],
+  .kit:has(li[data-n="4"]:hover) .pin[data-n="4"],
+  .kit:has(li[data-n="5"]:hover) .pin[data-n="5"] { transform: translate(-50%, -50%) scale(1.25); }
+
+  /* ---------- callouts ---------- */
+  .callout { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; font-size: 16px; font-weight: 500; line-height: 1.5; margin: 0 0 12px; }
+  .callout svg { width: 22px; height: 22px; margin-top: 1px; }
+  .callout.tip { background: var(--blue-50); color: var(--blue-ink); }
+  .callout.warn { background: var(--red-50); color: #7E1916; }
+  .callout.warn svg { color: var(--red); }
+  .kit-side .callout { margin-top: 12px; margin-bottom: 0; }
+
+  /* ---------- steps ---------- */
+  .part-head { display: flex; align-items: center; gap: 10px; margin: 26px 0 12px; position: relative; }
+  .part-head:first-child { margin-top: 0; }
+  .part-head .chip { flex: 0 0 auto; font-size: 13px; font-weight: 700; color: #fff; background: var(--bar); border-radius: 999px; padding: 3px 11px; }
+  .part-head h3 { margin: 0; font-size: 19px; font-weight: 700; line-height: 1.3; }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .step { position: relative; padding: 18px; margin-bottom: 14px; }
+  .step-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .step-num {
+    flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%; background: var(--blue); color: #fff;
+    font-size: 20px; font-weight: 800; display: grid; place-items: center; line-height: 1;
+  }
+  .step-num svg { width: 24px; height: 24px; }
+  .kicker { display: block; font-size: 13px; color: var(--muted); font-weight: 500; line-height: 1.2; }
+  .step h4 { margin: 2px 0 0; font-size: 20px; line-height: 1.25; font-weight: 700; }
+  .step-body p { margin: 0 0 12px; color: var(--ink-2); }
+  .step-media { margin: 0; }
+  .step-media img { width: 100%; border-radius: var(--r-img); background: #E6E8ED; }
+  .media-2 { display: grid; gap: 12px; }
+  .media-2 figure { margin: 0; }
+  .media-2 figcaption { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .media-2 figcaption b { flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--blue-50); color: var(--blue); font-size: 12px; display: grid; place-items: center; }
+  .done { display: flex; align-items: center; gap: 14px; padding: 18px; margin-top: 4px; position: relative; }
+  .done .step-num { background: #fff; color: var(--blue); box-shadow: inset 0 0 0 2.5px var(--blue); }
+  .done p { margin: 0; font-size: 18px; }
+  .done strong { color: var(--blue); font-weight: 800; }
+
+  /* ---------- troubleshooting ---------- */
+  .trouble { display: grid; gap: 16px; }
+  .qa-list { display: grid; gap: 12px; }
+  .qa { padding: 16px 18px; }
+  .qa h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; font-size: 18px; line-height: 1.3; font-weight: 700; }
+  .qa h3 svg { color: var(--blue); }
+  .qa p { margin: 0; color: var(--ink-2); font-size: 16px; }
+  .qa .stat { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin-top: 2px; }
+  .qa .stat b { font-size: 30px; font-weight: 800; color: var(--blue); line-height: 1.1; }
+  .qa .stat span { color: var(--ink-2); }
+  .trouble-media { margin: 0; }
+  .trouble-media img { border-radius: var(--r-img); box-shadow: var(--shadow); }
+
+  /* ---------- manual ---------- */
+  .manual { padding: 20px; display: grid; gap: 14px; }
+  .manual .row { display: flex; gap: 14px; align-items: flex-start; }
+  .manual h3 { margin: 0 0 2px; font-size: 19px; font-weight: 700; }
+  .manual p { margin: 0; color: var(--ink-2); font-size: 16px; }
+  .manual .btn { justify-self: start; }
+  .disclaimer { font-size: 14px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 14px; margin: 0; }
+
+  /* ---------- footer ---------- */
+  .site-footer { margin-top: 48px; background: var(--surface); border-top: 1px solid var(--line); padding: 28px 0 calc(32px + env(safe-area-inset-bottom)); }
+  .site-footer .wrap { display: grid; gap: 14px; }
+  .site-footer .logo { height: 20px; width: auto; }
+  .site-footer .who { margin: 0; font-size: 17px; font-weight: 600; }
+  .site-footer .phone { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--ink-2); font-size: 16px; }
+  .site-footer .phone svg { width: 20px; height: 20px; color: var(--blue); }
+  .site-footer .phone .ph { color: var(--muted); }
+  .site-footer .phone a { font-weight: 700; text-decoration: none; }
+  .site-footer small { color: var(--muted); font-size: 13px; }
+
+  /* ---------- tablet / desktop ---------- */
+  @media (min-width: 720px) {
+    :root { --gutter: 28px; }
+    .prep { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .prep .card { flex-direction: column; padding: 22px; }
+    .media-2 { grid-template-columns: 1fr 1fr; }
+    .site-footer .wrap { grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; }
+  }
+  @media (min-width: 960px) {
+    body { font-size: 18px; }
+    .section { padding-top: 72px; }
+    .section-head { margin-bottom: 28px; }
+    .hero { padding: 40px 0 16px; }
+    .hero-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
+    .kit { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 28px; align-items: center; }
+    .trouble { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 28px; align-items: start; }
+    .trouble-media { position: sticky; top: calc(var(--nav-h) + 24px); }
+    .manual { grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: 26px 28px; column-gap: 28px; }
+    .manual .disclaimer { grid-column: 1 / -1; }
+
+    /* progress rail between the steps */
+    .rail { position: relative; padding-inline-start: 84px; }
+    .rail::before, .rail::after {
+      content: ""; position: absolute; inset-inline-start: 26px; top: 8px; width: 3px; border-radius: 3px;
+    }
+    .rail::before { bottom: 40px; background: var(--line); }
+    .rail::after { height: calc(var(--fill, 0) * (100% - 48px)); background: var(--blue); transition: height .15s linear; }
+    .part-head { margin: 36px 0 14px; }
+    .part-head::before {
+      content: ""; position: absolute; inset-inline-start: -64.5px; top: 50%; width: 16px; height: 16px;
+      transform: translateY(-50%) rotate(45deg); border-radius: 3px; background: var(--bar); box-shadow: 0 0 0 4px var(--bg);
+    }
+    .step { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 28px; align-items: center; padding: 24px; margin-bottom: 18px; }
+    .step.wide { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .step .step-num, .done .step-num {
+      position: absolute; inset-inline-start: -84px; top: 22px; width: 56px; height: 56px; font-size: 22px;
+      background: var(--surface); color: var(--blue); box-shadow: 0 0 0 3px var(--line), 0 0 0 7px var(--bg);
+      transition: background-color .25s, color .25s, box-shadow .25s;
+    }
+    .step.is-done .step-num { background: var(--blue); color: #fff; box-shadow: 0 0 0 3px var(--blue), 0 0 0 7px var(--bg); }
+    .done .step-num { top: 50%; transform: translateY(-50%); }
+    .done.is-done .step-num { background: var(--blue); color: #fff; box-shadow: 0 0 0 3px var(--blue), 0 0 0 7px var(--bg); }
+    .step-head { gap: 0; }
+    .step h4 { font-size: 23px; }
+    .done { padding: 22px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <img class="logo" src="img/logo-samsung-blue.png" width="480" height="81" alt="Samsung">
+    <span class="tag">מדריך התקנה · ניופאן</span>
+  </div>
+</header>
+
+<nav class="chapters" aria-label="פרקי המדריך">
+  <div class="wrap">
+    <a href="#prep" data-sec="prep">הכנה</a>
+    <a href="#kit" data-sec="kit">ערכה</a>
+    <a href="#part1" data-sec="part1">חלק 1</a>
+    <a href="#part2" data-sec="part2">חלק 2</a>
+    <a href="#part3" data-sec="part3">בדיקה</a>
+    <a href="#help" data-sec="help">תקלות</a>
+  </div>
+  <div class="meter" aria-hidden="true"><span></span></div>
+</nav>
+
+<main>
+  <!-- ===== 1. hero ===== -->
+  <section class="hero" aria-labelledby="title">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="model ltr">SAMSUNG · RF65DB970E22EU</div>
+        <div class="rule"></div>
+        <h1 id="title">איך מחברים את קו המים למקרר</h1>
+        <p class="lead">למקרר <strong class="ltr">Samsung RF65DB970E22EU</strong>. כדי שמתקן המים שבתוך הדלת יעבוד, המקרר צריך חיבור לקו מים. כאן רואים איך מחברים אותו, שלב אחרי שלב.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#steps">לשלבי ההתקנה
+            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#kit">מה בערכה</a>
+        </div>
+      </div>
+
+      <div>
+        <figure class="player" id="player" aria-label="סרטון ההדרכה">
+          <img src="img/poster.jpg" width="1280" height="720" alt="פתיחת סרטון ההדרכה: How to Connect the Water Line, מקרר Samsung ארבע דלתות" fetchpriority="high">
+          <div class="veil"></div>
+          <button class="play" type="button" disabled aria-disabled="true" aria-label="הסרטון יעלה בקרוב">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
+          </button>
+          <span class="soon"><i></i>הסרטון בקרוב</span>
+        </figure>
+        <p class="player-note" id="player-note">הסרטון המלא יעלה כאן בקרוב. בינתיים, כל השלבים מצולמים ומוסברים למטה.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. before you start ===== -->
+  <section class="section" id="prep" aria-labelledby="prep-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">הכנה</p>
+        <h2 id="prep-title">לפני שמתחילים</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="prep">
+        <div class="card">
+          <span class="badge-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v4M15 2.5v4"/><path d="M6.5 6.5h11v3.5a5.5 5.5 0 0 1-11 0z"/><path d="M12 15.5V18a3 3 0 0 1-3 3H7"/><path d="M3.5 3.5l17 17"/></svg>
+          </span>
+          <div>
+            <h3>מנתקים מהחשמל</h3>
+            <p>מוציאים את תקע המקרר מהשקע לפני שמתחילים.</p>
+          </div>
+        </div>
+        <div class="card">
+          <span class="badge-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="13" width="20" height="5" rx="1.5"/><rect x="8" y="10" width="8" height="11" rx="2"/><path d="M12 10V6"/><path d="M7 5h10"/></svg>
+          </span>
+          <div>
+            <h3>סוגרים את ברז המים הראשי</h3>
+            <p>כך לא יצאו מים בזמן החיבור.</p>
+          </div>
+        </div>
+        <div class="card">
+          <span class="badge-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8s-6.5 7-6.5 11.7a6.5 6.5 0 0 0 13 0C18.5 9.8 12 2.8 12 2.8z"/><path d="M12 11.5v6M9.4 13l5.2 3M14.6 13l-5.2 3"/></svg>
+          </span>
+          <div>
+            <h3>רק מי שתייה קרים</h3>
+            <p>מחברים רק לקו מי שתייה קרים. חיבור לקו מים חמים עלול לגרום לתקלה.</p>
+          </div>
+        </div>
+      </div>
+      <div class="band">
+        <span class="badge-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </span>
+        <p style="margin:0"><strong>חיבור פשוט ב-5 שלבים.</strong> מי שמעדיף — טכנאי מוסמך.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. kit ===== -->
+  <section class="section" id="kit" aria-labelledby="kit-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">בקופסה</p>
+        <h2 id="kit-title">מה בערכה</h2>
+        <div class="rule"></div>
+        <p class="intro">ערכת החיבור מגיעה יחד עם המקרר. אלה החלקים שבה:</p>
+      </div>
+      <div class="kit">
+        <figure class="kit-figure">
+          <img src="img/kit.jpg" width="1280" height="959" loading="lazy" decoding="async" alt="ערכת החיבור האמיתית: צינור לבן וצינור כחול מגולגלים, שסתום אל-חזור אפור, אום פליז על קצה הצינור הכחול ומתאם פליז לברז עם אטם גומי">
+          <span class="pin" data-n="1" style="--x:42%;--y:86%" aria-hidden="true">1</span>
+          <span class="pin" data-n="2" style="--x:7%;--y:50%" aria-hidden="true">2</span>
+          <span class="pin" data-n="3" style="--x:40%;--y:21%" aria-hidden="true">3</span>
+          <span class="pin" data-n="4" style="--x:75.5%;--y:40.5%" aria-hidden="true">4</span>
+          <span class="pin" data-n="5" style="--x:87%;--y:41%" aria-hidden="true">5</span>
+        </figure>
+        <div class="kit-side">
+          <ol class="kit-list">
+            <li data-n="1"><span class="n" aria-hidden="true">1</span><div><strong>צינור לבן</strong><span class="d">מהברז אל השסתום</span></div></li>
+            <li data-n="2"><span class="n" aria-hidden="true">2</span><div><strong>צינור כחול</strong><span class="d">מהשסתום אל המקרר</span></div></li>
+            <li data-n="3"><span class="n" aria-hidden="true">3</span><div><strong>שסתום אל-חזור</strong><span class="d">עם חץ שמצביע לכיוון המקרר</span></div></li>
+            <li data-n="4"><span class="n" aria-hidden="true">4</span><div><strong>אום דחיסה</strong><span class="d">אום פליז, בקצה הצינור הכחול</span></div></li>
+            <li data-n="5"><span class="n" aria-hidden="true">5</span><div><strong>מתאם לברז</strong><span class="d">מתאם פליז עם אטם גומי</span></div></li>
+          </ol>
+          <p class="callout warn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <span>משתמשים רק בערכה החדשה שמגיעה עם המקרר, לא בצינור ישן.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. step by step ===== -->
+  <section class="section" id="steps" aria-labelledby="steps-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">ההתקנה</p>
+        <h2 id="steps-title">שלב אחרי שלב</h2>
+        <div class="rule"></div>
+      </div>
+
+      <div class="rail" id="rail">
+        <!-- part 1 -->
+        <div class="part-head" id="part1"><span class="chip">חלק 1</span><h3>החיבור לאספקת המים</h3></div>
+        <ol class="steps" start="1">
+          <li class="step card">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">1</span>
+                <div><span class="kicker">שלב 1 מתוך 8</span><h4>מבריגים את המתאם על הברז</h4></div>
+              </div>
+              <p>מבריגים את מתאם הפליז על ברז מי השתייה הקרים.</p>
+            </div>
+            <figure class="step-media"><img src="img/step-1-adapter.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: מתאם הפליז מתברג על ברז המים"></figure>
+          </li>
+
+          <li class="step card">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">2</span>
+                <div><span class="kicker">שלב 2 מתוך 8</span><h4>צינור לבן ← שסתום ← צינור כחול</h4></div>
+              </div>
+              <p>מחברים את הצינור הלבן למתאם, ואחריו את שסתום האל-חזור. מהשסתום ממשיך הצינור הכחול אל המקרר.</p>
+              <p class="callout tip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v6M12 16.5h.01"/></svg>
+                <span><strong>שימו לב:</strong> החץ על השסתום מצביע לכיוון המקרר.</span>
+              </p>
+            </div>
+            <figure class="step-media"><img src="img/step-2-valve.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: צינור לבן מהברז, שסתום אל-חזור עם חץ לכיוון המקרר, וצינור כחול עד המקרר"></figure>
+          </li>
+
+          <li class="step card">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">3</span>
+                <div><span class="kicker">שלב 3 מתוך 8</span><h4>בלי כיפופים חדים</h4></div>
+              </div>
+              <p>מעבירים את הצינור בלי כיפופים חדים, ולא מקבעים את השסתום על גוף המקרר.</p>
+              <p class="callout tip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5M12 8h.01"/></svg>
+                <span>אם מזיזים את המקרר אחרי החיבור, מוודאים שאזור החיבור של הצינור נשאר ישר.</span>
+              </p>
+            </div>
+            <figure class="step-media"><img src="img/step-3-no-bends.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: צינור בקשת רכה מסומן כנכון, צינור בכיפוף חד מסומן כשגוי, ושסתום שמקובע על המקרר מסומן כשגוי"></figure>
+          </li>
+        </ol>
+
+        <!-- part 2 -->
+        <div class="part-head" id="part2"><span class="chip">חלק 2</span><h3>החיבור למקרר</h3></div>
+        <ol class="steps" start="4">
+          <li class="step card wide">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">4</span>
+                <div><span class="kicker">שלב 4 מתוך 8</span><h4>מאחורי המקרר: מסירים את המכסה ומשחררים את האום</h4></div>
+              </div>
+              <p>נקודת החיבור נמצאת בגב המקרר, בצד ימין (במבט מאחור). מסירים את המכסה, ואז משחררים ומסירים את אום הדחיסה מקו המים של המקרר.</p>
+            </div>
+            <div class="media-2">
+              <figure><img src="img/step-4-location.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: גב המקרר, עיגול מסמן את נקודת חיבור קו המים בצד ימין"><figcaption><b>1</b>איפה: בגב המקרר, בצד ימין</figcaption></figure>
+              <figure><img src="img/step-4-cap-nut.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: המכסה הוסר, ואום הדחיסה משתחרר מקו המים של המקרר"><figcaption><b>2</b>מסירים מכסה, משחררים אום</figcaption></figure>
+            </div>
+          </li>
+
+          <li class="step card">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">5</span>
+                <div><span class="kicker">שלב 5 מתוך 8</span><h4>משחילים ודוחפים עד הסוף</h4></div>
+              </div>
+              <p>משחילים את האום על הצינור הכחול, ודוחפים את הצינור פנימה לקו המים של המקרר עד הסוף.</p>
+              <p class="callout tip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5M12 8h.01"/></svg>
+                <span>בלי רווח בין הצינור לחיבור.</span>
+              </p>
+            </div>
+            <figure class="step-media"><img src="img/step-5-push.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: האום מושחל על הצינור הכחול, והצינור נדחף עד הסוף לקו המים של המקרר, בלי רווח"></figure>
+          </li>
+
+          <li class="step card">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">6</span>
+                <div><span class="kicker">שלב 6 מתוך 8</span><h4>מהדקים את האום</h4></div>
+              </div>
+              <p>מהדקים את אום הדחיסה היטב, אבל לא יותר מדי.</p>
+            </div>
+            <figure class="step-media"><img src="img/step-6-tighten.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: אום הדחיסה מתהדק על החיבור, עם חץ סיבוב"></figure>
+          </li>
+        </ol>
+
+        <!-- part 3 -->
+        <div class="part-head" id="part3"><span class="chip">בדיקה</span><h3>בדיקה ושטיפה</h3></div>
+        <ol class="steps" start="7">
+          <li class="step card">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">7</span>
+                <div><span class="kicker">שלב 7 מתוך 8</span><h4>פותחים את הברז ובודקים נזילות</h4></div>
+              </div>
+              <p>פותחים את ברז המים הראשי בהדרגה, ובודקים שאין נזילות בשני החיבורים: ליד הברז ובגב המקרר.</p>
+            </div>
+            <figure class="step-media"><img src="img/step-7-leaks.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: הברז נפתח לאט, ושני סימני בדיקה ליד שני החיבורים מראים שאין נזילה"></figure>
+          </li>
+
+          <li class="step card">
+            <div class="step-body">
+              <div class="step-head">
+                <span class="step-num" aria-hidden="true">8</span>
+                <div><span class="kicker">שלב 8 מתוך 8</span><h4>שוטפים כ-3 ליטר לפני השימוש הראשון</h4></div>
+              </div>
+              <p>מחברים את המקרר בחזרה לחשמל, ומזרימים כ-3 ליטר מים מהמתקן שבתוך הדלת, כדי לנקות את המערכת.</p>
+              <p class="callout tip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></svg>
+                <span>המים הראשונים מגיעים אחרי כמה שניות. זה אוויר בצינור, וזה תקין.</span>
+              </p>
+            </div>
+            <figure class="step-media"><img src="img/step-8-flush.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: מתקן המים שבתוך הדלת ממלא כוס, ומד מראה 3 ליטר"></figure>
+          </li>
+        </ol>
+
+        <div class="done card" id="done">
+          <span class="step-num" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          </span>
+          <p><strong>זהו.</strong> המקרר מחובר, ואפשר ליהנות ממים וקרח.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. troubleshooting ===== -->
+  <section class="section" id="help" aria-labelledby="help-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">אם משהו לא עובד</p>
+        <h2 id="help-title">פתרון תקלות קצר</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="trouble">
+        <div class="qa-list">
+          <div class="qa card">
+            <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9.5 2.5h5"/></svg>אין מים אחרי 3 דקות?</h3>
+            <p>בודקים שברז המים הראשי פתוח, ושהמקרר מחובר לחשמל.</p>
+          </div>
+          <div class="qa card">
+            <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s-5 5.4-5 9a5 5 0 0 0 10 0c0-3.6-5-9-5-9z"/><path d="M12 20.5v1"/></svg>יש טפטוף באחד החיבורים?</h3>
+            <p>בודקים שהאום מהודק היטב, אבל לא מהדקים יתר על המידה. אם הנזילה לא נפסקת, סוגרים את ברז המים הראשי ופונים לשירות.</p>
+          </div>
+          <div class="qa card">
+            <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14l-1.6 16.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M5.8 9h12.4"/></svg>איך יודעים שהזרימה תקינה?</h3>
+            <div class="stat"><b>170 מ״ל</b><span>כוס כזו מתמלאת בכ-10 שניות.</span></div>
+          </div>
+        </div>
+        <figure class="trouble-media"><img src="img/check-cup.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: כוס מתמלאת במתקן שבתוך הדלת, ושעון עצר מראה 10 שניות"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. manual + disclaimer ===== -->
+  <section class="section" id="manual" aria-labelledby="manual-title">
+    <div class="wrap">
+      <div class="manual card">
+        <div class="row">
+          <span class="badge-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg>
+          </span>
+          <div>
+            <h3 id="manual-title">חוברת ההדרכה המלאה</h3>
+            <p>כל ההוראות והאזהרות של היצרן לדגם הזה. חיבור קו המים מופיע בעמודים <span class="ltr">42–43</span>.</p>
+          </div>
+        </div>
+        <a class="btn btn-primary" id="manual-btn" href="#manual" aria-disabled="true">חוברת ההדרכה תעלה בקרוב</a>
+        <p class="disclaimer">ההדרכה בדף הזה מבוססת על הוראות היצרן. בכל מקרה של ספק, ההוראות בחוברת ההדרכה של Samsung קובעות. התקנת קו המים אינה מכוסה באחריות המקרר.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== 7. footer ===== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="logo" src="img/logo-samsung-blue.png" width="480" height="81" alt="Samsung">
+    <p class="who">ניופאן — היבואן הרשמי</p>
+    <p class="phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>שירות לקוחות: <span id="phone" class="ph">יעודכן בקרוב</span></span>
+    </p>
+    <small class="ltr">RF65DB970E22EU</small>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---- video: placeholder <-> embed, driven by VIDEO_URL ---- */
+  var url = (typeof VIDEO_URL === "string" ? VIDEO_URL : "").trim();
+  var player = document.getElementById("player");
+  if (url && player) {
+    var yt = url.match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    var el;
+    if (yt) {
+      el = document.createElement("iframe");
+      el.src = "https://www.youtube-nocookie.com/embed/" + yt[1] + "?rel=0&modestbranding=1&playsinline=1";
+      el.title = "סרטון: איך מחברים את קו המים למקרר";
+      el.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+      el.setAttribute("allowfullscreen", "");
+      el.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    } else {
+      el = document.createElement("video");
+      el.src = url;
+      el.controls = true;
+      el.playsInline = true;
+      el.preload = "metadata";
+      el.poster = "img/poster.jpg";
+      el.setAttribute("aria-label", "סרטון: איך מחברים את קו המים למקרר");
+    }
+    player.innerHTML = "";
+    player.appendChild(el);
+    player.classList.add("is-live");
+    var note = document.getElementById("player-note");
+    if (note) note.textContent = "הסרטון המלא. מתחת לסרטון, כל השלבים מצולמים ומוסברים גם בכתב.";
+  }
+
+  /* ---- manual PDF link ---- */
+  var manual = (typeof MANUAL_URL === "string" ? MANUAL_URL : "").trim();
+  var mb = document.getElementById("manual-btn");
+  if (manual && mb) {
+    mb.href = manual;
+    mb.removeAttribute("aria-disabled");
+    mb.setAttribute("target", "_blank");
+    mb.setAttribute("rel", "noopener");
+    mb.textContent = "הורדת חוברת ההדרכה (PDF)";
+  }
+
+  /* ---- service phone ---- */
+  var phone = (typeof SERVICE_PHONE === "string" ? SERVICE_PHONE : "").trim();
+  var ph = document.getElementById("phone");
+  if (phone && ph) {
+    var a = document.createElement("a");
+    a.href = "tel:" + phone.replace(/[^\d+*#]/g, "");
+    a.textContent = phone;
+    a.className = "ltr";
+    ph.replaceWith(a);
+  }
+
+  /* ---- chapter bar, page meter, step rail ---- */
+  var nav = document.querySelector(".chapters");
+  var links = Array.prototype.slice.call(document.querySelectorAll(".chapters a"));
+  var targets = links.map(function (l) { return document.getElementById(l.getAttribute("data-sec")); });
+  var rail = document.getElementById("rail");
+  var marks = Array.prototype.slice.call(document.querySelectorAll(".rail .step, .rail .done"));
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+    var doc = document.documentElement;
+    var vh = window.innerHeight;
+    var max = Math.max(1, doc.scrollHeight - vh);
+    nav.style.setProperty("--p", Math.min(1, Math.max(0, window.scrollY / max)).toFixed(4));
+
+    var line = 96, active = -1;
+    for (var i = 0; i < targets.length; i++) {
+      if (targets[i] && targets[i].getBoundingClientRect().top <= line) active = i;
+    }
+    links.forEach(function (l, i) {
+      var on = i === active;
+      l.classList.toggle("is-active", on);
+      if (on) l.setAttribute("aria-current", "true"); else l.removeAttribute("aria-current");
+    });
+
+    if (rail) {
+      var mid = vh * 0.55;
+      var r = rail.getBoundingClientRect();
+      var fill = Math.min(1, Math.max(0, (mid - r.top) / Math.max(1, r.height - 48)));
+      rail.style.setProperty("--fill", fill.toFixed(4));
+      marks.forEach(function (m) {
+        var n = m.querySelector(".step-num");
+        var t = (n || m).getBoundingClientRect().top;
+        m.classList.toggle("is-done", t < mid);
+      });
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
+</script>
+</body>
+</html>
