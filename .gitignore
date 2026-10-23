@@ -3,3 +3,6 @@
 qa/
 .DS_Store
 tools/
+
+# local copy of the previous page design (not published)
+index-v1.html
