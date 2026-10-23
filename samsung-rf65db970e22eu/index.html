@@ -11,7 +11,7 @@
      MANUAL_URL: קישור ל-PDF של חוברת ההדרכה (ריק = "בקרוב").
      SERVICE_PHONE: טלפון שירות להצגה, למשל "*1234" או "03-0000000" (ריק = "יעודכן בקרוב").
      ================================================================ */
-  var VIDEO_URL = "";
+  var VIDEO_URL = "video/water-line-en.mp4";
   var MANUAL_URL = "";
   var SERVICE_PHONE = "";
 </script>
@@ -490,7 +490,7 @@
                 <span class="step-num" aria-hidden="true">4</span>
                 <div><span class="kicker">שלב 4 מתוך 8</span><h4>מאחורי המקרר: מסירים את המכסה ומשחררים את האום</h4></div>
               </div>
-              <p>נקודת החיבור נמצאת בגב המקרר, בצד ימין (במבט מאחור). מסירים את המכסה, ואז משחררים ומסירים את אום הדחיסה מקו המים של המקרר.</p>
+              <p>נקודת החיבור נמצאת בגב המקרר, בצד ימין (במבט מאחור), בגובה של כ-75 ס״מ. מסירים את המכסה, ואז משחררים ומסירים את אום הדחיסה מקו המים של המקרר.</p>
             </div>
             <div class="media-2">
               <figure><img src="img/step-4-location.jpg" width="1280" height="634" loading="lazy" decoding="async" alt="איור: גב המקרר, עיגול מסמן את נקודת חיבור קו המים בצד ימין"><figcaption><b>1</b>איפה: בגב המקרר, בצד ימין</figcaption></figure>
@@ -648,15 +648,17 @@
       el.src = url;
       el.controls = true;
       el.playsInline = true;
-      el.preload = "metadata";
-      el.poster = "img/poster.jpg";
+      el.setAttribute("playsinline", "");
+      el.setAttribute("webkit-playsinline", "");
+      el.setAttribute("preload", "metadata");
+      el.setAttribute("poster", "img/poster.jpg");
       el.setAttribute("aria-label", "סרטון: איך מחברים את קו המים למקרר");
     }
     player.innerHTML = "";
     player.appendChild(el);
     player.classList.add("is-live");
     var note = document.getElementById("player-note");
-    if (note) note.textContent = "הסרטון המלא. מתחת לסרטון, כל השלבים מצולמים ומוסברים גם בכתב.";
+    if (note) note.textContent = "הסרטון המלא (קריינות באנגלית, כתוביות בעברית). מתחת לסרטון, כל השלבים מוסברים גם בכתב ובתמונות.";
   }
 
   /* ---- manual PDF link ---- */
