@@ -40,6 +40,8 @@
      MANUAL_URL: קישור ל-PDF של חוברת ההדרכה (ריק = "בקרוב").
      SERVICE_PHONE: טלפון שירות להצגה, למשל "*1234" או "03-0000000" (ריק = שורת הטלפון לא מוצגת; בפוטר יש קישור לאתר ניופאן).
      ASSET_BASE: הנתיב לתיקיית הדף (img/, video/). כאן ריק; בדף האנגלי "../".
+     VIDEO_POSTER: תמונת הפתיחה של הנגן. כאן הפוסטר העברי (img/he/); בדף האנגלי אין, והסקריפט לוקח img/poster.jpg.
+     תמונות השלבים עם טקסט על המסך נמצאות ב-img/he/ (מהסרטון העברי); תמונות בלי טקסט (ערכה, מקרר) משותפות ב-img/.
      GUIDE_TEXT: הטקסטים שהסקריפט המשותף (guide.js) מציג.
      ================================================================ */
   var VIDEO_URL = "video/water-line-he.mp4?v=1.5";
@@ -47,6 +49,7 @@
   var MANUAL_URL = "";
   var SERVICE_PHONE = "";
   var ASSET_BASE = "";
+  var VIDEO_POSTER = "img/he/poster.jpg";
   var GUIDE_TEXT = {
     videoSoon: "הסרטון יעלה בקרוב",
     videoSoonShort: "הסרטון בקרוב",
@@ -72,7 +75,7 @@
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="איך מחברים את קו המים למקרר — Samsung RF65DB970E22EU">
 <meta property="og:description" content="מדריך מצולם, שלב אחרי שלב. ניופאן — היבואן הרשמי.">
-<meta property="og:image" content="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/img/poster.jpg">
+<meta property="og:image" content="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/img/he/poster.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231428A0'/%3E%3Cpath d='M16 6s-7 7.6-7 12.6a7 7 0 0 0 14 0C23 13.6 16 6 16 6z' fill='%23fff'/%3E%3C/svg%3E">
@@ -105,7 +108,7 @@
       <figure class="player" id="player" aria-label="סרטון ההדרכה">
         <picture class="poster">
           <source media="(max-width: 959.98px)" type="image/webp" srcset="img/hero-fridge-400.webp 400w, img/hero-fridge.webp 622w" sizes="62vw">
-          <img src="img/poster.jpg" srcset="img/poster-640.jpg 640w, img/poster.jpg 1280w" sizes="(min-width: 960px) 620px, 100vw" width="1280" height="720" alt="מקרר Samsung RF65DB970E22EU, ארבע דלתות, בחזית שחורה" fetchpriority="high">
+          <img src="img/he/poster.jpg" srcset="img/he/poster-640.jpg 640w, img/he/poster.jpg 1280w" sizes="(min-width: 960px) 620px, 100vw" width="1280" height="720" alt="מקרר Samsung RF65DB970E22EU, ארבע דלתות, בחזית שחורה" fetchpriority="high">
         </picture>
         <span class="floor" aria-hidden="true"></span>
         <button class="play" id="play" type="button" aria-label="הפעלת סרטון ההדרכה">
@@ -284,7 +287,7 @@
                 <h4>מבריגים את המתאם על הברז</h4>
                 <p>מבריגים את מתאם הפליז על ברז מי השתייה הקרים.</p>
               </div>
-              <figure class="shot rv"><img src="img/step-1-adapter.jpg" srcset="img/step-1-adapter-640.jpg 640w, img/step-1-adapter.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: מתאם הפליז מתברג על ברז המים"></figure>
+              <figure class="shot rv"><img src="img/he/step-1-adapter.jpg" srcset="img/he/step-1-adapter-640.jpg 640w, img/he/step-1-adapter.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: מתאם הפליז מתברג על ברז המים"></figure>
             </li>
 
             <li class="step alt">
@@ -309,7 +312,7 @@
                   <span><strong>שימו לב:</strong> החץ על השסתום מצביע לכיוון המקרר.</span>
                 </p>
               </div>
-              <figure class="shot rv"><img src="img/step-2-valve.jpg" srcset="img/step-2-valve-640.jpg 640w, img/step-2-valve.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: קו המים המורכב מראש. הקצה הלבן מחובר למתאם שעל הברז, השסתום עם חץ לכיוון המקרר, והצינור הכחול ממשיך עד המקרר"></figure>
+              <figure class="shot rv"><img src="img/he/step-2-valve.jpg" srcset="img/he/step-2-valve-640.jpg 640w, img/he/step-2-valve.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: קו המים המורכב מראש. הקצה הלבן מחובר למתאם שעל הברז, השסתום עם חץ לכיוון המקרר, והצינור הכחול ממשיך עד המקרר"></figure>
             </li>
 
             <li class="valve-slot" data-wp="valve" aria-hidden="true">
@@ -335,7 +338,7 @@
                   <span>אם מזיזים את המקרר אחרי החיבור, מוודאים שאזור החיבור של הצינור נשאר ישר.</span>
                 </p>
               </div>
-              <figure class="shot rv"><img src="img/step-3-no-bends.jpg" srcset="img/step-3-no-bends-640.jpg 640w, img/step-3-no-bends.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: צינור בקשת רכה מסומן כנכון, צינור בכיפוף חד מסומן כשגוי, ושסתום שמקובע על המקרר מסומן כשגוי"></figure>
+              <figure class="shot rv"><img src="img/he/step-3-no-bends.jpg" srcset="img/he/step-3-no-bends-640.jpg 640w, img/he/step-3-no-bends.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: צינור בקשת רכה מסומן כנכון, צינור בכיפוף חד מסומן כשגוי, ושסתום שמקובע על המקרר מסומן כשגוי"></figure>
             </li>
           </ol>
         </div>
@@ -362,8 +365,8 @@
                 <p>נקודת החיבור נמצאת בגב המקרר, בצד ימין (במבט מאחור), בגובה של כ-75 ס״מ. מסירים את המכסה, ואז משחררים ומסירים את אום הדחיסה מקו המים של המקרר.</p>
               </div>
               <div class="shot two rv">
-                <figure><img src="img/step-4-location.jpg" srcset="img/step-4-location-640.jpg 640w, img/step-4-location.jpg 1280w" sizes="(min-width: 960px) 520px, (min-width: 640px) 45vw, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: גב המקרר, עיגול מסמן את נקודת חיבור קו המים בצד ימין"><figcaption><b>1</b>איפה: בגב המקרר, בצד ימין</figcaption></figure>
-                <figure><img src="img/step-4-cap-nut.jpg" srcset="img/step-4-cap-nut-640.jpg 640w, img/step-4-cap-nut.jpg 1280w" sizes="(min-width: 960px) 520px, (min-width: 640px) 45vw, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: המכסה הוסר, ואום הדחיסה משתחרר מקו המים של המקרר"><figcaption><b>2</b>מסירים מכסה, משחררים אום</figcaption></figure>
+                <figure><img src="img/he/step-4-location.jpg" srcset="img/he/step-4-location-640.jpg 640w, img/he/step-4-location.jpg 1280w" sizes="(min-width: 960px) 520px, (min-width: 640px) 45vw, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: גב המקרר, עיגול מסמן את נקודת חיבור קו המים בצד ימין"><figcaption><b>1</b>איפה: בגב המקרר, בצד ימין</figcaption></figure>
+                <figure><img src="img/he/step-4-cap-nut.jpg" srcset="img/he/step-4-cap-nut-640.jpg 640w, img/he/step-4-cap-nut.jpg 1280w" sizes="(min-width: 960px) 520px, (min-width: 640px) 45vw, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: המכסה הוסר, ואום הדחיסה משתחרר מקו המים של המקרר"><figcaption><b>2</b>מסירים מכסה, משחררים אום</figcaption></figure>
               </div>
             </li>
 
@@ -387,7 +390,7 @@
                   <span>בלי רווח בין הצינור לחיבור.</span>
                 </p>
               </div>
-              <figure class="shot rv"><img src="img/step-5-push.jpg" srcset="img/step-5-push-640.jpg 640w, img/step-5-push.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: האום מושחל על הצינור הכחול, והצינור נדחף עד הסוף לקו המים של המקרר, בלי רווח"></figure>
+              <figure class="shot rv"><img src="img/he/step-5-push.jpg" srcset="img/he/step-5-push-640.jpg 640w, img/he/step-5-push.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: האום מושחל על הצינור הכחול, והצינור נדחף עד הסוף לקו המים של המקרר, בלי רווח"></figure>
             </li>
 
             <li class="step alt">
@@ -404,7 +407,7 @@
                 <h4>מהדקים את האום</h4>
                 <p>מהדקים את אום הדחיסה היטב, אבל לא יותר מדי.</p>
               </div>
-              <figure class="shot rv"><img src="img/step-6-tighten.jpg" srcset="img/step-6-tighten-640.jpg 640w, img/step-6-tighten.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: אום הדחיסה מתהדק על החיבור, עם חץ סיבוב"></figure>
+              <figure class="shot rv"><img src="img/he/step-6-tighten.jpg" srcset="img/he/step-6-tighten-640.jpg 640w, img/he/step-6-tighten.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: אום הדחיסה מתהדק על החיבור, עם חץ סיבוב"></figure>
             </li>
           </ol>
         </div>
@@ -430,7 +433,7 @@
                 <h4>פותחים את הברז ובודקים נזילות</h4>
                 <p>פותחים את ברז המים הראשי בהדרגה, ובודקים שאין נזילות בשני החיבורים: ליד הברז ובגב המקרר.</p>
               </div>
-              <figure class="shot rv"><img src="img/step-7-leaks.jpg" srcset="img/step-7-leaks-640.jpg 640w, img/step-7-leaks.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: הברז נפתח לאט, ושני סימני בדיקה ליד שני החיבורים מראים שאין נזילה"></figure>
+              <figure class="shot rv"><img src="img/he/step-7-leaks.jpg" srcset="img/he/step-7-leaks-640.jpg 640w, img/he/step-7-leaks.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: הברז נפתח לאט, ושני סימני בדיקה ליד שני החיבורים מראים שאין נזילה"></figure>
             </li>
 
             <li class="step alt">
@@ -453,7 +456,7 @@
                   <span>המים הראשונים מגיעים אחרי כמה שניות. זה אוויר בצינור, וזה תקין.</span>
                 </p>
               </div>
-              <figure class="shot rv"><img src="img/step-8-flush.jpg" srcset="img/step-8-flush-640.jpg 640w, img/step-8-flush.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: מתקן המים שבתוך הדלת ממלא כוס, ומד מראה 3 ליטר"></figure>
+              <figure class="shot rv"><img src="img/he/step-8-flush.jpg" srcset="img/he/step-8-flush-640.jpg 640w, img/he/step-8-flush.jpg 1280w" sizes="(min-width: 960px) 520px, calc(100vw - 60px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: מתקן המים שבתוך הדלת ממלא כוס, ומד מראה 3 ליטר"></figure>
             </li>
           </ol>
         </div>
@@ -505,7 +508,7 @@
               <div class="stat"><b>170 מ״ל</b><span>כוס כזו מתמלאת בכ-10 שניות.</span></div>
             </div>
           </div>
-          <figure class="trouble-media rv"><img src="img/check-cup.jpg" srcset="img/check-cup-640.jpg 640w, img/check-cup.jpg 1280w" sizes="(min-width: 960px) 480px, calc(100vw - 32px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: כוס מתמלאת במתקן שבתוך הדלת, ושעון עצר מראה 10 שניות"></figure>
+          <figure class="trouble-media rv"><img src="img/he/check-cup.jpg" srcset="img/he/check-cup-640.jpg 640w, img/he/check-cup.jpg 1280w" sizes="(min-width: 960px) 480px, calc(100vw - 32px)" width="1280" height="634" loading="lazy" decoding="async" alt="איור: כוס מתמלאת במתקן שבתוך הדלת, ושעון עצר מראה 10 שניות"></figure>
         </div>
       </div>
     </section>
@@ -561,7 +564,7 @@
   <p class="vo-t">איך מחברים את קו המים למקרר</p>
 </div>
 
-<script src="guide.js?v=2"></script>
+<script src="guide.js?v=3"></script>
 <script src="assistant/assistant.js?v=2" defer></script>
 </body>
 </html>

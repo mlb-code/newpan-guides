@@ -3,7 +3,7 @@
 (function () {
   "use strict";
   var d = document, w = window, de = d.documentElement;
-  /* page settings (defined in the page head): VIDEO_URL, VIDEO_URL_VERTICAL, MANUAL_URL, SERVICE_PHONE, ASSET_BASE, GUIDE_TEXT */
+  /* page settings (defined in the page head): VIDEO_URL, VIDEO_URL_VERTICAL, MANUAL_URL, SERVICE_PHONE, ASSET_BASE, GUIDE_TEXT, VIDEO_POSTER (optional; default img/poster.jpg) */
   var T = (typeof GUIDE_TEXT === "object" && GUIDE_TEXT) || {};
   var ASSET = typeof ASSET_BASE === "string" ? ASSET_BASE : "";
   /* the water line runs down the inline-start edge on mobile: right in Hebrew (RTL), left in English (LTR) */
@@ -60,7 +60,7 @@
       el.setAttribute("playsinline", "");
       el.setAttribute("webkit-playsinline", "");
       el.setAttribute("preload", vertical ? "auto" : "metadata");
-      if (!vertical) el.setAttribute("poster", ASSET + "img/poster.jpg");
+      if (!vertical) el.setAttribute("poster", typeof VIDEO_POSTER === "string" && VIDEO_POSTER ? VIDEO_POSTER : ASSET + "img/poster.jpg");
       el.setAttribute("aria-label", T.videoTitle + (vertical ? T.videoVertical : ""));
       el.setAttribute("data-src", src);
       // iOS Safari native fullscreen (webkitEnterFullscreen) does not fire fullscreenchange
