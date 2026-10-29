@@ -36,11 +36,16 @@
                 כל קישור אחר (למשל ‎.mp4) = נגן <video>.
      VIDEO_URL_VERTICAL: אותו סרטון בגרסה לאורך (9:16). כשהוא קיים, לחיצה על "הפעלה" שואלת
                 "איך לצפות?" (לאורך / לרוחב). ריק, או שהקובץ לא נמצא = מנגנים לרוחב ישר, בלי לשאול.
+     VIDEO_URL / VIDEO_URL_VERTICAL = קריינות באנגלית (כתוביות בעברית).
+     VIDEO_URL_HE / VIDEO_URL_VERTICAL_HE: אותו סרטון בעברית מלאה (v1.5: קריינות וטקסט בעברית, בלי כתוביות). כשהם קיימים, בחלון
+                "איך לצפות?" יש גם בחירת שפה (עברית = ברירת המחדל). ריק, או שהקובץ לא נמצא = אנגלית בלבד, בלי בחירת שפה.
      MANUAL_URL: קישור ל-PDF של חוברת ההדרכה (ריק = "בקרוב").
-     SERVICE_PHONE: טלפון שירות להצגה, למשל "*1234" או "03-0000000" (ריק = "יעודכן בקרוב").
+     SERVICE_PHONE: טלפון שירות להצגה, למשל "*1234" או "03-0000000" (ריק = שורת הטלפון לא מוצגת; בפוטר יש קישור לאתר ניופאן).
      ================================================================ */
-  var VIDEO_URL = "video/water-line-en.mp4?v=1.3";
-  var VIDEO_URL_VERTICAL = "video/water-line-en-vertical.mp4?v=1.3";
+  var VIDEO_URL = "video/water-line-en.mp4?v=1.4";
+  var VIDEO_URL_VERTICAL = "video/water-line-en-vertical.mp4?v=1.4";
+  var VIDEO_URL_HE = "video/water-line-he.mp4?v=1.5";
+  var VIDEO_URL_VERTICAL_HE = "video/water-line-he-vertical.mp4?v=1.5";
   var MANUAL_URL = "";
   var SERVICE_PHONE = "";
   document.documentElement.className += " js";
@@ -203,6 +208,18 @@
     background: transparent; color: var(--muted); cursor: pointer; display: grid; place-items: center;
   }
   .ch-x svg { width: 18px; height: 18px; }
+  /* narration language (Hebrew / English), above the orientation options */
+  .ch-lang { margin: -2px 0 12px; }
+  .ch-lang[hidden] { display: none; }
+  .ch-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 999px; background: var(--blue-50); box-shadow: inset 0 0 0 1.5px var(--blue-100); }
+  .ch-l {
+    min-height: 40px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: var(--blue);
+    font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background .2s, color .2s;
+  }
+  .ch-l[aria-checked="true"] { background: var(--blue); color: #fff; box-shadow: 0 4px 12px rgba(20, 40, 160, .25); }
+  @media (hover: hover) { .ch-l[aria-checked="false"]:hover { background: var(--blue-100); } }
+  .ch-l:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .ch-ls { display: block; margin-top: 6px; font-size: 13px; font-weight: 500; line-height: 1.3; color: var(--muted); }
   .hero.is-choosing .play, .hero.is-choosing .play-meta { opacity: 0; visibility: hidden; }
   .hero.is-choosing .player::before { opacity: .45; }
 
@@ -296,6 +313,7 @@
   .band { margin-top: 14px; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 18px; background: var(--blue); color: #fff; font-size: 17px; }
   .band p { margin: 0; }
   .band strong { font-weight: 700; }
+  .band a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
   .band .badge-ic { background: rgba(255, 255, 255, .14); color: #fff; flex-basis: 44px; width: 44px; height: 44px; border-radius: 12px; }
 
   /* ---------- kit ---------- */
@@ -468,6 +486,8 @@
   .site-footer .phone svg { width: 20px; height: 20px; color: var(--blue); }
   .site-footer .phone .ph { color: var(--muted); }
   .site-footer .phone a { font-weight: 700; text-decoration: none; }
+  .site-footer .phone[hidden] { display: none; }
+  .site-footer .svc a { text-decoration: underline; text-underline-offset: 3px; }
   .site-footer small { color: var(--muted); font-size: 13px; }
 
   /* ---------- chapter bar (like the video's) + floating video button ---------- */
@@ -638,13 +658,20 @@
         <button class="play" id="play" type="button" aria-label="הפעלת סרטון ההדרכה">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
         </button>
-        <span class="play-meta" id="play-meta">צפייה בסרטון <small class="ltr">2:38</small></span>
+        <span class="play-meta" id="play-meta">צפייה בסרטון <small class="ltr" id="play-len">2:49</small></span>
         <button class="close" id="close" type="button" hidden>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span class="close-t">סגירה</span>
         </button>
         <div class="chooser" id="chooser" role="dialog" aria-labelledby="chT" hidden>
           <button class="ch-x" id="chX" type="button" aria-label="ביטול"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
           <p class="ch-t" id="chT">איך לצפות?</p>
+          <div class="ch-lang" id="chLang" hidden>
+            <div class="ch-seg" role="radiogroup" aria-label="שפת הקריינות">
+              <button class="ch-l" type="button" role="radio" aria-checked="true" data-lang="he">עברית</button>
+              <button class="ch-l" type="button" role="radio" aria-checked="false" data-lang="en" lang="en" dir="ltr">English</button>
+            </div>
+            <small class="ch-ls" id="chLs">עברית — קריינות וטקסט בעברית</small>
+          </div>
           <div class="ch-opts">
             <button class="ch-o" id="chV" type="button">
               <svg viewBox="0 0 30 48" aria-hidden="true"><rect x="2.5" y="2.5" width="25" height="43" rx="5.5" fill="#fff" stroke="currentColor" stroke-width="2.6"/><path d="M11.5 18.5v11a.9.9 0 0 0 1.35.78l9.3-5.5a.9.9 0 0 0 0-1.56l-9.3-5.5a.9.9 0 0 0-1.35.78z" fill="currentColor"/></svg>
@@ -657,7 +684,7 @@
           </div>
         </div>
       </figure>
-      <p class="player-note" id="player-note">הסרטון המלא (קריינות באנגלית, כתוביות בעברית). מתחת לסרטון, כל השלבים מוסברים גם בכתב ובתמונות.</p>
+      <p class="player-note" id="player-note">הסרטון המלא, עם קריינות בעברית או באנגלית לבחירה. מתחת לסרטון, כל השלבים מוסברים גם בכתב ובתמונות.</p>
     </div>
 
     <div class="hero-copy">
@@ -707,7 +734,7 @@
             <span class="badge-ic" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             </span>
-            <p><strong>חיבור פשוט, שלב אחרי שלב.</strong> מי שמעדיף — טכנאי מוסמך.</p>
+            <p><strong>חיבור פשוט, שלב אחרי שלב.</strong> לשירות ומידע נוסף: <a href="https://www.newpan.co.il/" target="_blank" rel="noopener">ניופאן, היבואן הרשמי</a>.</p>
           </div>
         </div>
         <div class="b prep">
@@ -1025,7 +1052,7 @@
             </div>
             <div class="qa card rv">
               <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s-5 5.4-5 9a5 5 0 0 0 10 0c0-3.6-5-9-5-9z"/><path d="M12 20.5v1"/></svg>יש טפטוף באחד החיבורים?</h3>
-              <p>בודקים שהאום מהודק היטב, אבל לא מהדקים יתר על המידה. אם הנזילה לא נפסקת, סוגרים את ברז המים הראשי ופונים לשירות.</p>
+              <p>בודקים שהאום מהודק היטב, אבל לא מהדקים יתר על המידה. אם הנזילה לא נפסקת, סוגרים את ברז המים הראשי ו<a href="https://www.newpan.co.il/" target="_blank" rel="noopener">פונים לשירות של ניופאן</a>.</p>
             </div>
             <div class="qa card rv">
               <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14l-1.6 16.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M5.8 9h12.4"/></svg>איך יודעים שהזרימה תקינה?</h3>
@@ -1062,10 +1089,10 @@
 <footer class="site-footer">
   <div class="wrap">
     <img class="logo" src="img/logo-samsung-blue.png" width="480" height="81" loading="lazy" alt="Samsung">
-    <p class="who">ניופאן — היבואן הרשמי</p>
-    <p class="phone">
+    <p class="who svc">שירות ומידע נוסף: <a href="https://www.newpan.co.il/" target="_blank" rel="noopener">ניופאן, היבואן הרשמי</a></p>
+    <p class="phone" id="phoneRow" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span>שירות לקוחות: <span id="phone" class="ph">יעודכן בקרוב</span></span>
+      <span>שירות לקוחות: <span id="phone" class="ph"></span></span>
     </p>
     <small class="ltr">RF65DB970E22EU</small>
   </div>
@@ -1099,6 +1126,8 @@
   /* ---------------- video: VIDEO_URL (+ VIDEO_URL_VERTICAL) drive the players ---------------- */
   var url = (typeof VIDEO_URL === "string" ? VIDEO_URL : "").trim();
   var urlV = (typeof VIDEO_URL_VERTICAL === "string" ? VIDEO_URL_VERTICAL : "").trim();
+  var urlHe = (typeof VIDEO_URL_HE === "string" ? VIDEO_URL_HE : "").trim();
+  var urlVHe = (typeof VIDEO_URL_VERTICAL_HE === "string" ? VIDEO_URL_VERTICAL_HE : "").trim();
   var hero = $("#top"), player = $("#player"), playBtn = $("#play"), closeBtn = $("#close"), toVideo = $("#toVideo");
   var chooser = $("#chooser"), vo = $("#vo"), voClose = $("#voClose");
   var media = null, vmedia = null;
@@ -1113,6 +1142,35 @@
     hero.classList.add("no-video");
     toVideo.hidden = true;
   }
+  /* narration language: Hebrew (default, the page is in Hebrew) or English. The choice is kept while the page is open. */
+  var lang = urlHe ? "he" : "en";
+  var heOK = (url && urlHe) ? null : false;
+  var chLang = $("#chLang"), chLs = $("#chLs"), langBtns = $$("#chLang .ch-l");
+  var LEN = { he: "2:49", en: "2:45" };
+  function setLang(l) {
+    lang = l;
+    langBtns.forEach(function (b) { b.setAttribute("aria-checked", b.getAttribute("data-lang") === l ? "true" : "false"); });
+    chLs.textContent = l === "he" ? "עברית — קריינות וטקסט בעברית" : "English narration, Hebrew subtitles";
+    chLs.setAttribute("lang", l === "he" ? "he" : "en"); chLs.setAttribute("dir", l === "he" ? "rtl" : "ltr");
+    $("#play-len").textContent = LEN[l];
+  }
+  function useHe() { return lang === "he" && heOK !== false && !!urlHe; }
+  function srcH() { return useHe() ? urlHe : url; }
+  function srcV() { return useHe() && urlVHe ? urlVHe : urlV; }
+  function heFail() { heOK = false; chLang.hidden = true; setLang("en"); }
+  if (heOK === null) {
+    // are the Hebrew files really there? (missing / 404 = English only, no language question)
+    if (YT.test(urlHe)) { heOK = true; chLang.hidden = false; }
+    else if (w.fetch) {
+      chLang.hidden = false;
+      Promise.all([urlHe, urlVHe].filter(Boolean).map(function (u) {
+        return YT.test(u) ? true : fetch(u, { method: "HEAD", cache: "no-cache" }).then(function (r) {
+          return r.ok && !/text\/html/i.test(r.headers.get("content-type") || "");
+        });
+      })).then(function (a) { if (a.every(Boolean)) heOK = true; else heFail(); }).catch(heFail);
+    } else heFail();
+  } else setLang("en");
+  langBtns.forEach(function (b) { b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); }); });
   // is the vertical file really there? (missing / 404 = no question, play horizontal directly)
   var vertOK = urlV ? null : false;
   if (urlV) {
@@ -1142,7 +1200,9 @@
       el.setAttribute("webkit-playsinline", "");
       el.setAttribute("preload", vertical ? "auto" : "metadata");
       if (!vertical) el.setAttribute("poster", "img/poster.jpg");
-      el.setAttribute("aria-label", "סרטון: איך מחברים את קו המים למקרר" + (vertical ? " (לאורך)" : ""));
+      el.setAttribute("aria-label", "סרטון: איך מחברים את קו המים למקרר" + (vertical ? " (לאורך)" : "") +
+        (src === urlHe || src === urlVHe ? ", קריינות בעברית" : ", קריינות באנגלית"));
+      el.setAttribute("data-src", src);
       // iOS Safari native fullscreen (webkitEnterFullscreen) does not fire fullscreenchange
       el.addEventListener("webkitbeginfullscreen", fsEnter);
       el.addEventListener("webkitendfullscreen", fsExit);
@@ -1200,7 +1260,9 @@
   function play() {
     if (!url) return;
     hideChooser();
-    if (!media) { media = makeMedia(url, false); player.appendChild(media); }
+    var want = srcH();
+    if (media && media.getAttribute("data-src") !== want) { if (media.tagName === "VIDEO") media.pause(); media.parentNode.removeChild(media); media = null; }
+    if (!media) { media = makeMedia(want, false); player.appendChild(media); }
     hero.classList.add("is-playing");
     closeBtn.hidden = false;
     if (!isDesk()) pushH("cinema");
@@ -1229,7 +1291,7 @@
   }
   function onPlay() {
     if (!url) return;
-    if (urlV && vertOK !== false) showChooser(); else play();
+    if ((urlV && vertOK !== false) || heOK !== false) showChooser(); else play();
   }
 
   /* ---- vertical: full-screen overlay, page scroll locked and given back exactly ---- */
@@ -1260,8 +1322,13 @@
   }
   function openVO() {
     hideChooser();
+    var wantV = srcV();
+    if (vmedia && vmedia.getAttribute("data-src") !== wantV) {
+      if (vmedia.tagName === "VIDEO") { vmedia.removeEventListener("error", onVErr); vmedia.pause(); }
+      vmedia.parentNode.removeChild(vmedia); vmedia = null;
+    }
     if (!vmedia) {
-      vmedia = makeMedia(urlV, true);
+      vmedia = makeMedia(wantV, true);
       if (vmedia.tagName === "VIDEO") vmedia.addEventListener("error", onVErr);
       vo.appendChild(vmedia);
     }
@@ -1350,6 +1417,7 @@
   var phone = (typeof SERVICE_PHONE === "string" ? SERVICE_PHONE : "").trim();
   var ph = $("#phone");
   if (phone && ph) {
+    var pr = $("#phoneRow"); if (pr) pr.hidden = false;
     var a = d.createElement("a");
     a.href = "tel:" + phone.replace(/[^\d+*#]/g, "");
     a.textContent = phone; a.className = "ltr";
