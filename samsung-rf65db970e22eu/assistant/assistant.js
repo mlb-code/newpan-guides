@@ -1,6 +1,10 @@
 /* Newpan guide assistant — chat widget for the Samsung RF65DB970E22EU guide page.
    Load with one line: <script src="assistant/assistant.js" defer></script>
-   (assistant.css next to this file is loaded automatically). */
+   (assistant.css next to this file is loaded automatically).
+   Language: Hebrew by default. On the English page: <script src="../assistant/assistant.js" data-lang="en" defer></script>
+   (or <html lang="en">) — the widget's own strings switch to English and the chat is kept separately per language.
+   The server answers in the language of the question; its own error / refusal messages are Hebrew, so the widget
+   shows its English equivalents instead when the page is English. */
 var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
 
 (function () {
@@ -19,10 +23,59 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
   } catch (e) {}
   API = API.replace(/\/+$/, "");
 
-  var STORE = "nla_chat_v1", TEASER_KEY = "nla_teaser_closed", MAX_LEN = 500, HISTORY = 8;
-  var GREETING = "היי! אני העוזר של מקרר Samsung RF65DB970E22EU 👋 אפשר לשאול אותי כל שאלה על חיבור קו המים, ההתקנה והשימוש במקרר — אני עונה לפי חוברת ההדרכה.";
-  var SUGGESTIONS = ["כמה זמן לחכות לפני שמכניסים אוכל?", "מה עושים אחרי שמחברים את קו המים?", "איך מחליפים את מסנן המים?"];
-  var MSG_OFFLINE = "העוזר לא זמין כרגע. נסה שוב בעוד רגע.";
+  /* --- language: data-lang on the script tag, else the page's <html lang> --- */
+  var LANG = String((script && script.getAttribute("data-lang")) || d.documentElement.lang || "he").slice(0, 2).toLowerCase() === "en" ? "en" : "he";
+  var TEXT = {
+    he: {
+      greeting: "היי! אני העוזר של מקרר Samsung RF65DB970E22EU 👋 אפשר לשאול אותי כל שאלה על חיבור קו המים, ההתקנה והשימוש במקרר — אני עונה לפי חוברת ההדרכה.",
+      suggestions: ["כמה זמן לחכות לפני שמכניסים אוכל?", "מה עושים אחרי שמחברים את קו המים?", "איך מחליפים את מסנן המים?"],
+      offline: "העוזר לא זמין כרגע. נסה שוב בעוד רגע.",
+      fab: "שאלה על המקרר? פתח את העוזר הדיגיטלי",
+      teaser: "יש שאלה על ההתקנה? שאלו אותי<small>עונה מיד, לפי חוברת ההדרכה</small>",
+      teaserClose: "סגירת ההודעה",
+      panel: "העוזר של המקרר",
+      title: "העוזר של המקרר", subtitle: "עונה לפי חוברת ההדרכה",
+      newChat: "שיחה חדשה", close: "סגירת העוזר",
+      placeholder: "כתוב שאלה…", inputLabel: "השאלה שלך", send: "שליחה",
+      note: "תשובות מבוססות על חוברת ההדרכה. במקרה של ספק — פנו לטכנאי מוסמך.",
+      typing: "מקליד…", retry: "נסה שוב",
+      // server messages are shown as they come (they are Hebrew)
+      server: null
+    },
+    en: {
+      greeting: "Hi! I'm the assistant for the Samsung RF65DB970E22EU refrigerator 👋 Ask me anything about connecting the water line, installing and using the refrigerator — I answer from the user manual.",
+      suggestions: ["How long should I wait before putting food in?", "What do I do after connecting the water line?", "How do I replace the water filter?"],
+      offline: "The assistant isn't available right now. Please try again in a moment.",
+      fab: "A question about the refrigerator? Open the assistant",
+      teaser: "Have a question about the installation? Ask me<small>Answers right away, from the user manual</small>",
+      teaserClose: "Close this message",
+      panel: "Refrigerator assistant",
+      title: "Refrigerator assistant", subtitle: "Answers from the user manual",
+      newChat: "New chat", close: "Close the assistant",
+      placeholder: "Type a question…", inputLabel: "Your question", send: "Send",
+      note: "Answers are based on the user manual. If in doubt, contact a qualified technician.",
+      typing: "Typing…", retry: "Try again",
+      // the server's own messages are Hebrew: shown in English here, by their error code
+      server: {
+        refusal: "Sorry, I can't answer that here. You can ask me about installing and using the refrigerator; for anything else, please contact Newpan customer service.",
+        bad_request: "The question is empty or too long (up to 500 characters).",
+        rate_limit: "You've asked many questions in a short time. Please try again in a few minutes.",
+        daily_cap: "The assistant is busy today. Please try again tomorrow, or contact Newpan customer service.",
+        busy: "The assistant is busy right now. Please try again in a minute.",
+        upstream: "Something went wrong. Please try again in a moment."
+      }
+    }
+  };
+  var T = TEXT[LANG];
+  function serverMsg(code, fallback) {
+    if (T.server && T.server[code]) return T.server[code];
+    return LANG === "en" ? T.offline : (fallback || T.offline);
+  }
+
+  var STORE = "nla_chat_v1" + (LANG === "en" ? "_en" : ""), TEASER_KEY = "nla_teaser_closed", MAX_LEN = 500, HISTORY = 8;
+  var GREETING = T.greeting;
+  var SUGGESTIONS = T.suggestions;
+  var MSG_OFFLINE = T.offline;
 
   function ss(op, k, v) {
     try {
@@ -65,40 +118,40 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
 
   /* --- styles --- */
   var css = d.createElement("link");
-  css.rel = "stylesheet"; css.href = BASE + "assistant.css?v=1";
+  css.rel = "stylesheet"; css.href = BASE + "assistant.css?v=2";
   d.head.appendChild(css);
 
   /* --- DOM --- */
-  var root = el("div", "nla-root"); root.setAttribute("dir", "rtl"); root.setAttribute("lang", "he");
+  var root = el("div", "nla-root"); root.setAttribute("dir", LANG === "en" ? "ltr" : "rtl"); root.setAttribute("lang", LANG);
   var fab = el("button", "nla-fab", I_CHAT + '<span class="nla-dot" aria-hidden="true"></span>');
   fab.type = "button";
-  fab.setAttribute("aria-label", "שאלה על המקרר? פתח את העוזר הדיגיטלי");
+  fab.setAttribute("aria-label", T.fab);
   fab.setAttribute("aria-expanded", "false");
   fab.setAttribute("aria-controls", "nla-panel");
 
   var teaser = el("div", "nla-teaser");
   teaser.hidden = true;
-  var tBtn = el("button", "nla-teaser-btn", "יש שאלה על ההתקנה? שאלו אותי<small>עונה מיד, לפי חוברת ההדרכה</small>");
+  var tBtn = el("button", "nla-teaser-btn", T.teaser);
   tBtn.type = "button";
-  var tX = el("button", "nla-teaser-x", I_X); tX.type = "button"; tX.setAttribute("aria-label", "סגירת ההודעה");
+  var tX = el("button", "nla-teaser-x", I_X); tX.type = "button"; tX.setAttribute("aria-label", T.teaserClose);
   teaser.appendChild(tBtn); teaser.appendChild(tX);
 
   var panel = el("div", "nla-panel"); panel.id = "nla-panel"; panel.hidden = true;
-  panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "העוזר של המקרר");
+  panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", T.panel);
   panel.innerHTML =
     '<div class="nla-head">' +
       '<span class="nla-avatar" aria-hidden="true">' + I_DROP + '</span>' +
-      '<div class="nla-title"><b>העוזר של המקרר</b><span>עונה לפי חוברת ההדרכה</span></div>' +
-      '<button type="button" class="nla-hbtn nla-new" aria-label="שיחה חדשה">' + I_NEW + '<span>שיחה חדשה</span></button>' +
-      '<button type="button" class="nla-hbtn nla-close" aria-label="סגירת העוזר">' + I_X + '</button>' +
+      '<div class="nla-title"><b>' + T.title + '</b><span>' + T.subtitle + '</span></div>' +
+      '<button type="button" class="nla-hbtn nla-new" aria-label="' + T.newChat + '">' + I_NEW + '<span>' + T.newChat + '</span></button>' +
+      '<button type="button" class="nla-hbtn nla-close" aria-label="' + T.close + '">' + I_X + '</button>' +
     '</div>' +
     '<div class="nla-log" role="log" aria-live="polite" aria-relevant="additions"></div>' +
     '<form class="nla-form" novalidate>' +
-      '<textarea class="nla-input" rows="1" maxlength="' + MAX_LEN + '" placeholder="כתוב שאלה…" aria-label="השאלה שלך"></textarea>' +
-      '<button type="submit" class="nla-send" aria-label="שליחה" disabled>' + I_SEND + '</button>' +
+      '<textarea class="nla-input" rows="1" maxlength="' + MAX_LEN + '" placeholder="' + T.placeholder + '" aria-label="' + T.inputLabel + '"></textarea>' +
+      '<button type="submit" class="nla-send" aria-label="' + T.send + '" disabled>' + I_SEND + '</button>' +
     '</form>' +
     '<div class="nla-count" aria-live="polite" hidden></div>' +
-    '<p class="nla-note">תשובות מבוססות על חוברת ההדרכה. במקרה של ספק — פנו לטכנאי מוסמך.</p>';
+    '<p class="nla-note">' + T.note + '</p>';
 
   root.appendChild(teaser); root.appendChild(fab); root.appendChild(panel);
 
@@ -118,7 +171,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
     log.appendChild(m); scrollDown(); return m;
   }
   function typing() {
-    var t = el("div", "nla-msg nla-bot nla-typing", '<i aria-hidden="true"><b></b><b></b><b></b></i><span>מקליד…</span>');
+    var t = el("div", "nla-msg nla-bot nla-typing", '<i aria-hidden="true"><b></b><b></b><b></b></i><span>' + T.typing + '</span>');
     log.appendChild(t); scrollDown(); return t;
   }
   function showChips() {
@@ -246,7 +299,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
     var m = el("div", "nla-msg nla-err"); m.setAttribute("role", "alert");
     m.appendChild(d.createTextNode(message));
     if (retryQ) {
-      var b = el("button", "nla-retry"); b.type = "button"; b.textContent = "נסה שוב";
+      var b = el("button", "nla-retry"); b.type = "button"; b.textContent = T.retry;
       b.addEventListener("click", function () { m.remove(); history = history.slice(0, -1); save(); var last = log.querySelectorAll(".nla-user"); if (last.length) last[last.length - 1].remove(); ask(retryQ); });
       m.appendChild(d.createElement("br")); m.appendChild(b);
     }
@@ -280,7 +333,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
     }).then(function (res) {
       if (!res.ok) {
         return res.json().catch(function () { return {}; }).then(function (j) {
-          fail(j && j.message ? j.message : MSG_OFFLINE, res.status >= 500);
+          fail(serverMsg(j && j.error, j && j.message), res.status >= 500);
         });
       }
       if (!res.body || !res.body.getReader) {
@@ -313,9 +366,9 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
         if (!line) return;
         var ev; try { ev = JSON.parse(line); } catch (e) { return; }
         if (ev.type === "delta") { ensureBubble(); text += ev.text; bubble.innerHTML = md(text); follow(); }
-        else if (ev.type === "refusal") { ensureBubble(); text = ev.message; bubble.innerHTML = md(text); finished = true; }
+        else if (ev.type === "refusal") { ensureBubble(); text = serverMsg("refusal", ev.message); bubble.innerHTML = md(text); finished = true; }
         else if (ev.type === "done") { finished = true; }
-        else if (ev.type === "error") { finished = "error"; fail(ev.message || MSG_OFFLINE, true); }
+        else if (ev.type === "error") { finished = "error"; fail(serverMsg(ev.code, ev.message), true); }
       });
     }
     function finish() {

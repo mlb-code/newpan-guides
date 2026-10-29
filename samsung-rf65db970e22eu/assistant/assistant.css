@@ -1,4 +1,7 @@
-/* Newpan guide assistant widget — standalone, loaded by assistant.js */
+/* Newpan guide assistant widget — standalone, loaded by assistant.js.
+   Direction comes from the dir attribute on .nla-root (rtl on the Hebrew page, ltr on the English page): text and paddings
+   use logical properties. The launcher, teaser and desktop window stay bottom-right on both pages (the chat convention;
+   the guide's own "to the video" button is bottom-left on both), and [dir="ltr"] flips the send icon. */
 .nla-root {
   --nla-blue: #1428A0;
   --nla-blue-2: #2E7CF6;
@@ -10,7 +13,6 @@
   --nla-bottom: calc(var(--cb-h, 54px) + 14px + env(safe-area-inset-bottom));
   font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   color: var(--nla-ink);
-  direction: rtl;
   -webkit-text-size-adjust: 100%;
 }
 .nla-root *, .nla-root *::before, .nla-root *::after { box-sizing: border-box; }
@@ -58,12 +60,12 @@
   transform: rotate(45deg); box-shadow: 3px 3px 6px rgba(18, 28, 60, .08); border-radius: 0 0 3px 0;
 }
 .nla-teaser-btn {
-  flex: 1 1 auto; min-width: 0; border: 0; background: none; padding: 0; margin: 0; cursor: pointer; text-align: right;
+  flex: 1 1 auto; min-width: 0; border: 0; background: none; padding: 0; margin: 0; cursor: pointer; text-align: start;
   font: inherit; font-size: 15.5px; font-weight: 700; line-height: 1.35; color: inherit;
 }
 .nla-teaser-btn small { display: block; font-size: 13px; font-weight: 500; color: var(--nla-muted); margin-top: 2px; }
 .nla-teaser-x {
-  flex: 0 0 auto; width: 30px; height: 30px; margin: -6px -2px 0 0; border: 0; border-radius: 50%; background: none; color: #8A92A3;
+  flex: 0 0 auto; width: 30px; height: 30px; margin: -6px 0 0; margin-inline-start: -2px; border: 0; border-radius: 50%; background: none; color: #8A92A3;
   cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
 }
 .nla-teaser-x:hover { background: var(--nla-bg); color: var(--nla-ink); }
@@ -82,7 +84,7 @@
 @keyframes nla-up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
 
 .nla-head {
-  flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 12px 12px 12px 8px;
+  flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 12px; padding-inline-end: 8px;
   background: var(--nla-blue); color: #fff;
 }
 .nla-avatar {
@@ -90,7 +92,7 @@
   display: flex; align-items: center; justify-content: center; position: relative;
 }
 .nla-avatar svg { width: 22px; height: 22px; }
-.nla-avatar::after { content: ""; position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--nla-live); border: 2px solid var(--nla-blue); }
+.nla-avatar::after { content: ""; position: absolute; bottom: 0; inset-inline-start: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--nla-live); border: 2px solid var(--nla-blue); }
 .nla-title { flex: 1 1 auto; min-width: 0; }
 .nla-title b { display: block; font-size: 16px; font-weight: 800; line-height: 1.2; }
 .nla-title span { display: block; font-size: 12.5px; color: #C9D3FF; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -111,7 +113,7 @@
 .nla-msg { max-width: 88%; padding: 10px 14px; border-radius: 18px; font-size: 15.5px; line-height: 1.55; overflow-wrap: anywhere; }
 .nla-msg p { margin: 0 0 6px; }
 .nla-msg p:last-child { margin-bottom: 0; }
-.nla-msg ul, .nla-msg ol { margin: 4px 0 6px; padding: 0 20px 0 0; }
+.nla-msg ul, .nla-msg ol { margin: 4px 0 6px; padding: 0; padding-inline-start: 20px; }
 .nla-msg li { margin: 2px 0; }
 .nla-msg strong { font-weight: 800; }
 .nla-bot { align-self: flex-start; background: #fff; border-start-start-radius: 6px; box-shadow: 0 1px 2px rgba(18, 28, 60, .08); }
@@ -130,7 +132,7 @@
 .nla-chips { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; margin-top: 2px; }
 .nla-chip {
   border: 1.5px solid #C9D3F2; background: #fff; color: var(--nla-blue); border-radius: 999px; padding: 8px 14px;
-  font: inherit; font-size: 14.5px; font-weight: 700; line-height: 1.3; cursor: pointer; text-align: right;
+  font: inherit; font-size: 14.5px; font-weight: 700; line-height: 1.3; cursor: pointer; text-align: start;
   animation: nla-pop .35s both;
 }
 .nla-chip:hover { background: #EEF2FF; border-color: var(--nla-blue); }
@@ -142,7 +144,7 @@
 .nla-input {
   flex: 1 1 auto; min-width: 0; resize: none; max-height: 120px; min-height: 46px; padding: 11px 14px; border-radius: 22px;
   border: 1.5px solid var(--nla-line); background: var(--nla-bg); color: var(--nla-ink);
-  font: inherit; font-size: 16px; line-height: 1.4; direction: rtl;
+  font: inherit; font-size: 16px; line-height: 1.4;
 }
 .nla-input:focus { outline: none; border-color: var(--nla-blue); background: #fff; }
 .nla-send {
@@ -152,7 +154,8 @@
 .nla-send:disabled { background: #B9C0D0; cursor: default; }
 .nla-send:focus-visible { outline: 3px solid #8DBBFF; outline-offset: 2px; }
 .nla-send svg { width: 20px; height: 20px; transform: scaleX(-1); }
-.nla-count { font-size: 12px; color: var(--nla-muted); padding: 0 16px; text-align: left; }
+[dir="ltr"] .nla-send svg { transform: none; }
+.nla-count { font-size: 12px; color: var(--nla-muted); padding: 0 16px; text-align: end; }
 .nla-note {
   flex: 0 0 auto; margin: 0; padding: 4px 14px calc(8px + env(safe-area-inset-bottom)); background: #fff;
   color: var(--nla-muted); font-size: 12px; line-height: 1.4; text-align: center;
