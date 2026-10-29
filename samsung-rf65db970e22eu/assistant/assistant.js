@@ -30,11 +30,12 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
       greeting: "היי! אני העוזר של מקרר Samsung RF65DB970E22EU 👋 אפשר לשאול אותי כל שאלה על חיבור קו המים, ההתקנה והשימוש במקרר — אני עונה לפי חוברת ההדרכה.",
       suggestions: ["כמה זמן לחכות לפני שמכניסים אוכל?", "מה עושים אחרי שמחברים את קו המים?", "איך מחליפים את מסנן המים?"],
       offline: "העוזר לא זמין כרגע. נסה שוב בעוד רגע.",
-      fab: "שאלה על המקרר? פתח את העוזר הדיגיטלי",
-      teaser: "יש שאלה על ההתקנה? שאלו אותי<small>עונה מיד, לפי חוברת ההדרכה</small>",
+      fab: "שאל את ה-AI: העוזר הדיגיטלי של המקרר",
+      fabLabel: "שאל את ה-<b>AI</b>",
+      teaser: '<span class="nla-ai-tag">AI</span>יש שאלה על ההתקנה? שאל אותי<small>עוזר בינה מלאכותית, עונה מיד לפי חוברת ההדרכה</small>',
       teaserClose: "סגירת ההודעה",
       panel: "העוזר של המקרר",
-      title: "העוזר של המקרר", subtitle: "עונה לפי חוברת ההדרכה",
+      title: "העוזר של המקרר", subtitle: "בינה מלאכותית · עונה לפי חוברת ההדרכה",
       newChat: "שיחה חדשה", close: "סגירת העוזר",
       placeholder: "כתוב שאלה…", inputLabel: "השאלה שלך", send: "שליחה",
       note: "תשובות מבוססות על חוברת ההדרכה. במקרה של ספק — פנו לטכנאי מוסמך.",
@@ -46,11 +47,12 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
       greeting: "Hi! I'm the assistant for the Samsung RF65DB970E22EU refrigerator 👋 Ask me anything about connecting the water line, installing and using the refrigerator — I answer from the user manual.",
       suggestions: ["How long should I wait before putting food in?", "What do I do after connecting the water line?", "How do I replace the water filter?"],
       offline: "The assistant isn't available right now. Please try again in a moment.",
-      fab: "A question about the refrigerator? Open the assistant",
-      teaser: "Have a question about the installation? Ask me<small>Answers right away, from the user manual</small>",
+      fab: "Ask AI: the refrigerator's digital assistant",
+      fabLabel: "Ask <b>AI</b>",
+      teaser: '<span class="nla-ai-tag">AI</span>Have a question about the installation? Ask me<small>AI assistant, answers right away from the user manual</small>',
       teaserClose: "Close this message",
       panel: "Refrigerator assistant",
-      title: "Refrigerator assistant", subtitle: "Answers from the user manual",
+      title: "Refrigerator assistant", subtitle: "AI · answers from the user manual",
       newChat: "New chat", close: "Close the assistant",
       placeholder: "Type a question…", inputLabel: "Your question", send: "Send",
       note: "Answers are based on the user manual. If in doubt, contact a qualified technician.",
@@ -110,20 +112,19 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
   }
 
   /* --- icons --- */
-  var I_CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.9-.9L3 20.5l1.6-4.4A8 8 0 0 1 3 11.5 8.6 8.6 0 0 1 12 3a8.6 8.6 0 0 1 9 8.5z"/><path d="M8 10.5h8M8 14h5"/></svg>';
+  var I_SPARK = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 2.5c.3 4.9 2.6 7.2 7.5 7.5-4.9.3-7.2 2.6-7.5 7.5-.3-4.9-2.6-7.2-7.5-7.5 4.9-.3 7.2-2.6 7.5-7.5z"/><path d="M18.5 13.5c.2 2.6 1.4 3.8 4 4-2.6.2-3.8 1.4-4 4-.2-2.6-1.4-3.8-4-4 2.6-.2 3.8-1.4 4-4z"/><path d="M5.5 15.5c.15 1.9 1 2.75 2.9 2.9-1.9.15-2.75 1-2.9 2.9-.15-1.9-1-2.75-2.9-2.9 1.9-.15 2.75-1 2.9-2.9z" opacity=".85"/></svg>';
   var I_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   var I_NEW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>';
   var I_SEND = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.4 20.4l17.4-7.5a1 1 0 0 0 0-1.8L3.4 3.6a.9.9 0 0 0-1.3 1l1.8 6.4 9 1-9 1-1.8 6.4a.9.9 0 0 0 1.3 1z"/></svg>';
-  var I_DROP = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5s-6.5 7-6.5 11.6a6.5 6.5 0 0 0 13 0C18.5 9.5 12 2.5 12 2.5z"/></svg>';
 
   /* --- styles --- */
   var css = d.createElement("link");
-  css.rel = "stylesheet"; css.href = BASE + "assistant.css?v=2";
+  css.rel = "stylesheet"; css.href = BASE + "assistant.css?v=3";
   d.head.appendChild(css);
 
   /* --- DOM --- */
   var root = el("div", "nla-root"); root.setAttribute("dir", LANG === "en" ? "ltr" : "rtl"); root.setAttribute("lang", LANG);
-  var fab = el("button", "nla-fab", I_CHAT + '<span class="nla-dot" aria-hidden="true"></span>');
+  var fab = el("button", "nla-fab", '<span class="nla-spark" aria-hidden="true">' + I_SPARK + '</span><span class="nla-label" aria-hidden="true">' + T.fabLabel + '</span>');
   fab.type = "button";
   fab.setAttribute("aria-label", T.fab);
   fab.setAttribute("aria-expanded", "false");
@@ -140,7 +141,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
   panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", T.panel);
   panel.innerHTML =
     '<div class="nla-head">' +
-      '<span class="nla-avatar" aria-hidden="true">' + I_DROP + '</span>' +
+      '<span class="nla-avatar" aria-hidden="true">' + I_SPARK + '</span>' +
       '<div class="nla-title"><b>' + T.title + '</b><span>' + T.subtitle + '</span></div>' +
       '<button type="button" class="nla-hbtn nla-new" aria-label="' + T.newChat + '">' + I_NEW + '<span>' + T.newChat + '</span></button>' +
       '<button type="button" class="nla-hbtn nla-close" aria-label="' + T.close + '">' + I_X + '</button>' +
@@ -255,24 +256,59 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
     setTimeout(function () { if (!isOpen && !ss("get", TEASER_KEY)) { teaser.hidden = false; syncFab(); } }, 4000);
   }
 
-  /* --- hide the launcher while a video plays or the vertical player is open --- */
-  var hero = null, vo = null;
+  /* --- hide the launcher while a video plays or the vertical player is open, and while it would sit on the hero's
+         CTA buttons / tap graphic (bottom-left of the hero on phones); lift it above the page's chapter bar +
+         "to the video" pill (same bottom-left corner) once they slide in --- */
+  var hero = null, vo = null, chapbar = null, toVideo = null, cta = null, tap = null, lastLift = null, raf = 0;
+  var nudgeAt = Date.now() + 3000, nudged = !!history.length ||
+    !!(w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches);
   function videoActive() {
     return !!((hero && hero.classList.contains("is-playing")) || (vo && !vo.hidden && vo.classList.contains("open")) ||
       d.fullscreenElement || d.webkitFullscreenElement);
   }
+  function heroBlocks(box) { // would this box (launcher / teaser) cover the hero's CTA buttons or the tap graphic right now?
+    if (!cta && !tap) return false;
+    var l = box.offsetLeft, t = box.offsetTop, r = l + box.offsetWidth, b = t + box.offsetHeight, M = 10;
+    function hit(e) {
+      if (!e) return false;
+      var x = e.getBoundingClientRect();
+      return x.width > 0 && x.left < r + M && x.right > l - M && x.top < b + M && x.bottom > t - M;
+    }
+    return hit(cta) || hit(tap);
+  }
   function syncFab() {
-    var hide = videoActive();
+    var lift = 0;
+    if (chapbar && chapbar.classList.contains("on")) lift += chapbar.offsetHeight || 54;
+    if (toVideo && !toVideo.hidden && toVideo.classList.contains("on") && toVideo.offsetHeight > 0) lift += toVideo.offsetHeight + 10;
+    if (lift !== lastLift) { lastLift = lift; root.style.setProperty("--nla-lift", lift + "px"); setTimeout(syncFab, 450); } // re-check once it has moved
+    var hide = videoActive() || heroBlocks(fab);
     fab.classList.toggle("is-hidden", hide || isOpen);
-    teaser.classList.toggle("is-hidden", hide);
+    teaser.classList.toggle("is-hidden", hide || (!teaser.hidden && heroBlocks(teaser)));
+    if (!nudged && !hide && !isOpen && Date.now() >= nudgeAt) nudge();
+  }
+  function onScroll() { if (!raf) raf = w.requestAnimationFrame(function () { raf = 0; syncFab(); }); }
+  /* one-time attention pulse: two rings, ~3 s after load or as soon as the launcher is first shown; then the class goes (no endless animation) */
+  function nudge() {
+    nudged = true;
+    fab.classList.add("is-nudge");
+    var off = function () { fab.classList.remove("is-nudge"); fab.removeEventListener("animationend", off); };
+    fab.addEventListener("animationend", off);
+    setTimeout(off, 3200);
   }
   function watch() {
-    hero = d.querySelector(".hero"); vo = d.getElementById("vo");
+    hero = d.querySelector(".hero"); vo = d.getElementById("vo"); chapbar = d.getElementById("chapbar"); toVideo = d.getElementById("toVideo");
+    cta = hero && hero.querySelector(".cta"); tap = hero && hero.querySelector(".tap");
     if (w.MutationObserver) {
       var mo = new MutationObserver(syncFab);
       if (hero) mo.observe(hero, { attributes: true, attributeFilter: ["class"] });
       if (vo) mo.observe(vo, { attributes: true, attributeFilter: ["class", "hidden"] });
+      if (chapbar) mo.observe(chapbar, { attributes: true, attributeFilter: ["class"] });
+      if (toVideo) mo.observe(toVideo, { attributes: true, attributeFilter: ["class", "hidden"] });
     }
+    w.addEventListener("resize", syncFab);
+    w.addEventListener("scroll", onScroll, { passive: true });
+    fab.addEventListener("transitionend", function (e) { if (e.propertyName === "bottom") syncFab(); });
+    setTimeout(syncFab, 3050);
     d.addEventListener("fullscreenchange", syncFab); d.addEventListener("webkitfullscreenchange", syncFab);
     syncFab();
   }

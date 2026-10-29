@@ -1,7 +1,9 @@
 /* Newpan guide assistant widget — standalone, loaded by assistant.js.
    Direction comes from the dir attribute on .nla-root (rtl on the Hebrew page, ltr on the English page): text and paddings
-   use logical properties. The launcher, teaser and desktop window stay bottom-right on both pages (the chat convention;
-   the guide's own "to the video" button is bottom-left on both), and [dir="ltr"] flips the send icon. */
+   use logical properties. The launcher ("Ask AI" pill), teaser and desktop window sit at the PHYSICAL bottom-left on both
+   pages (Meir, 29.10: left is the comfortable side on mobile and desktop). The guide's own "to the video" pill and chapter
+   bar live in the same corner: assistant.js measures them and sets --nla-lift, so the launcher steps up above them
+   (bottom: 14px when the page is at the hero, above the bar + pill once they slide in). [dir="ltr"] flips the send icon. */
 .nla-root {
   --nla-blue: #1428A0;
   --nla-blue-2: #2E7CF6;
@@ -10,7 +12,15 @@
   --nla-line: #E3E7EF;
   --nla-bg: #F4F6FA;
   --nla-live: #22C55E;
-  --nla-bottom: calc(var(--cb-h, 54px) + 14px + env(safe-area-inset-bottom));
+  /* AI identity: violet -> indigo -> blue, distinct from the page's Samsung blue. White text on the lightest stop (#2563EB) is 5.2:1. */
+  --nla-ai-1: #7C3AED;
+  --nla-ai-2: #4F46E5;
+  --nla-ai-3: #2563EB;
+  --nla-ai: linear-gradient(135deg, var(--nla-ai-1) 0%, var(--nla-ai-2) 55%, var(--nla-ai-3) 100%);
+  --nla-glow: rgba(109, 40, 217, .45);
+  --nla-lift: 0px;                                   /* set by assistant.js: chapter bar + "to the video" pill heights */
+  --nla-left: calc(16px + env(safe-area-inset-left));
+  --nla-bottom: calc(14px + env(safe-area-inset-bottom) + var(--nla-lift));
   font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   color: var(--nla-ink);
   -webkit-text-size-adjust: 100%;
@@ -18,45 +28,46 @@
 .nla-root *, .nla-root *::before, .nla-root *::after { box-sizing: border-box; }
 .nla-root [hidden] { display: none !important; }
 
-/* ---------- launcher ---------- */
+/* ---------- launcher: "Ask AI" pill, bottom-left ---------- */
 .nla-fab {
-  position: fixed; z-index: 60; right: calc(16px + env(safe-area-inset-right)); bottom: var(--nla-bottom);
-  width: 62px; height: 62px; border: 0; border-radius: 50%; padding: 0; cursor: pointer;
-  background: var(--nla-blue); color: #fff;
-  box-shadow: 0 14px 30px rgba(20, 40, 160, .38), 0 2px 6px rgba(20, 40, 160, .25);
-  display: flex; align-items: center; justify-content: center;
-  transition: transform .25s cubic-bezier(.2, .8, .2, 1), opacity .25s, visibility 0s;
+  position: fixed; z-index: 60; left: var(--nla-left); bottom: var(--nla-bottom);
+  display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 18px 0 14px;
+  border: 0; border-radius: 999px; cursor: pointer; isolation: isolate;
+  background: var(--nla-ai); color: #fff;
+  font: inherit; font-size: 15.5px; font-weight: 800; letter-spacing: .01em; line-height: 1; white-space: nowrap;
+  box-shadow: 0 10px 26px var(--nla-glow), 0 2px 6px rgba(37, 24, 99, .22), inset 0 1px 0 rgba(255, 255, 255, .22);
+  transition: transform .25s cubic-bezier(.2, .8, .2, 1), opacity .25s, bottom .4s cubic-bezier(.2, .8, .2, 1), box-shadow .25s, visibility 0s;
   -webkit-tap-highlight-color: transparent;
 }
-.nla-fab:hover { transform: scale(1.06); }
-.nla-fab:active { transform: scale(.96); }
-.nla-fab:focus-visible { outline: 3px solid #8DBBFF; outline-offset: 3px; }
-.nla-fab svg { width: 30px; height: 30px; position: relative; z-index: 1; }
+.nla-fab:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 14px 32px var(--nla-glow), 0 2px 6px rgba(37, 24, 99, .22), inset 0 1px 0 rgba(255, 255, 255, .22); }
+.nla-fab:active { transform: scale(.97); }
+.nla-fab:focus-visible { outline: 3px solid #C4B5FD; outline-offset: 3px; }
+.nla-fab .nla-spark { flex: 0 0 auto; width: 26px; height: 26px; position: relative; z-index: 1; }
+.nla-fab .nla-spark svg { display: block; width: 26px; height: 26px; filter: drop-shadow(0 0 4px rgba(255, 255, 255, .55)); }
+.nla-fab .nla-label { position: relative; z-index: 1; padding-bottom: 1px; }
+.nla-fab .nla-label b { font-weight: 900; }
+/* soft halo behind the pill + a one-time attention ring (class is-nudge, added once by the script and removed when done) */
 .nla-fab::before {
-  content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--nla-blue);
-  animation: nla-pulse 2.4s cubic-bezier(.2, .6, .3, 1) infinite; z-index: 0;
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--nla-ai); z-index: 0; opacity: 0;
 }
-.nla-fab .nla-dot {
-  position: absolute; z-index: 2; top: 3px; right: 3px; width: 15px; height: 15px; border-radius: 50%;
-  background: var(--nla-live); border: 2.5px solid #fff;
-}
+.nla-fab.is-nudge::before { animation: nla-ring 1.3s cubic-bezier(.2, .6, .3, 1) 2; }
 .nla-fab.is-hidden, .nla-teaser.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.8); transition: opacity .2s, transform .2s, visibility 0s .2s; }
-@keyframes nla-pulse {
+@keyframes nla-ring {
   0% { transform: scale(1); opacity: .55; }
-  70% { transform: scale(1.55); opacity: 0; }
-  100% { transform: scale(1.55); opacity: 0; }
+  70% { transform: scale(1.35, 1.75); opacity: 0; }
+  100% { transform: scale(1.35, 1.75); opacity: 0; }
 }
 
 /* ---------- teaser bubble (above the launcher) ---------- */
 .nla-teaser {
-  position: fixed; z-index: 60; right: calc(12px + env(safe-area-inset-right)); bottom: calc(var(--nla-bottom) + 76px);
+  position: fixed; z-index: 60; left: calc(12px + env(safe-area-inset-left)); bottom: calc(var(--nla-bottom) + 66px);
   max-width: min(300px, calc(100vw - 32px)); display: flex; align-items: flex-start; gap: 4px;
-  padding: 12px 10px 12px 14px; border-radius: 18px 18px 6px 18px; background: #fff; color: var(--nla-ink);
+  padding: 12px 10px 12px 14px; border-radius: 18px 18px 18px 6px; background: #fff; color: var(--nla-ink);
   box-shadow: 0 16px 36px rgba(18, 28, 60, .22), 0 0 0 1px rgba(18, 28, 60, .06);
   animation: nla-pop .45s cubic-bezier(.2, .9, .3, 1.2) both;
 }
 .nla-teaser::after {
-  content: ""; position: absolute; bottom: -7px; right: 26px; width: 14px; height: 14px; background: #fff;
+  content: ""; position: absolute; bottom: -7px; left: 26px; width: 14px; height: 14px; background: #fff;
   transform: rotate(45deg); box-shadow: 3px 3px 6px rgba(18, 28, 60, .08); border-radius: 0 0 3px 0;
 }
 .nla-teaser-btn {
@@ -64,6 +75,10 @@
   font: inherit; font-size: 15.5px; font-weight: 700; line-height: 1.35; color: inherit;
 }
 .nla-teaser-btn small { display: block; font-size: 13px; font-weight: 500; color: var(--nla-muted); margin-top: 2px; }
+.nla-teaser-btn .nla-ai-tag {
+  display: inline-block; vertical-align: 1px; margin-inline-end: 6px; padding: 2px 7px 3px; border-radius: 999px;
+  background: var(--nla-ai); color: #fff; font-size: 11.5px; font-weight: 900; letter-spacing: .04em; line-height: 1;
+}
 .nla-teaser-x {
   flex: 0 0 auto; width: 30px; height: 30px; margin: -6px 0 0; margin-inline-start: -2px; border: 0; border-radius: 50%; background: none; color: #8A92A3;
   cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
@@ -85,17 +100,17 @@
 
 .nla-head {
   flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 12px; padding-inline-end: 8px;
-  background: var(--nla-blue); color: #fff;
+  background: var(--nla-ai); color: #fff;
 }
 .nla-avatar {
   flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, .16);
   display: flex; align-items: center; justify-content: center; position: relative;
 }
 .nla-avatar svg { width: 22px; height: 22px; }
-.nla-avatar::after { content: ""; position: absolute; bottom: 0; inset-inline-start: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--nla-live); border: 2px solid var(--nla-blue); }
+.nla-avatar::after { content: ""; position: absolute; bottom: 0; inset-inline-start: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--nla-live); border: 2px solid #5B3FE0; }
 .nla-title { flex: 1 1 auto; min-width: 0; }
 .nla-title b { display: block; font-size: 16px; font-weight: 800; line-height: 1.2; }
-.nla-title span { display: block; font-size: 12.5px; color: #C9D3FF; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nla-title span { display: block; font-size: 12.5px; color: #E4E0FF; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .nla-hbtn {
   flex: 0 0 auto; min-height: 40px; min-width: 40px; padding: 0 10px; border: 0; border-radius: 999px; cursor: pointer;
   background: rgba(255, 255, 255, .14); color: #fff; font: inherit; font-size: 13px; font-weight: 700;
@@ -164,19 +179,27 @@
 /* ---------- desktop: floating window in the corner ---------- */
 @media (min-width: 720px) and (min-height: 520px) {
   .nla-panel {
-    left: auto; top: auto; right: calc(20px + env(safe-area-inset-right)); bottom: calc(var(--cb-h, 54px) + 14px);
+    right: auto; top: auto; left: calc(20px + env(safe-area-inset-left)); bottom: calc(var(--cb-h, 54px) + 14px);
     width: 380px; height: 560px; max-height: calc(100vh - var(--cb-h, 54px) - 34px);
     border-radius: 20px; padding: 0;
     box-shadow: 0 28px 70px rgba(18, 28, 60, .28), 0 0 0 1px rgba(18, 28, 60, .06);
-    animation: nla-in .28s cubic-bezier(.2, .8, .2, 1) both; transform-origin: bottom right;
+    animation: nla-in .28s cubic-bezier(.2, .8, .2, 1) both; transform-origin: bottom left;
   }
   .nla-note { padding-bottom: 10px; }
   @keyframes nla-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nla-fab::before { animation: none; opacity: 0; }
+  .nla-fab.is-nudge::before { animation: none; opacity: 0; }
+  .nla-fab { transition: opacity .2s, visibility 0s; }
+  .nla-fab:hover { transform: none; }
   .nla-panel, .nla-teaser, .nla-chip { animation: none; }
+}
+
+/* very narrow phones: a slightly tighter pill */
+@media (max-width: 359px) {
+  .nla-fab { min-height: 48px; padding: 0 15px 0 12px; font-size: 14.5px; gap: 7px; }
+  .nla-fab .nla-spark, .nla-fab .nla-spark svg { width: 23px; height: 23px; }
 }
 
 /* very narrow phones: icon-only "new chat" so the title keeps its room */
