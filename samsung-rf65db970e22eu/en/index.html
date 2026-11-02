@@ -38,12 +38,12 @@
                 "How do you want to watch?" (portrait / landscape). Empty, or file missing = play landscape directly.
      This page is all English, with the English video (v1.4). The Hebrew version, with the Hebrew video, is one folder up (../).
      MANUAL_URL: link to the user manual PDF (empty = "coming soon").
-     SERVICE_PHONE: service phone to show, e.g. "*1234" or "03-0000000" (empty = the phone row is hidden; the footer links to Newpan's site).
+     SERVICE_PHONE: service phone to show, e.g. "*1234" or "03-0000000" (empty = the phone row is hidden; the footer links to NewPro's site).
      ASSET_BASE: path to the guide folder (img/, video/). "../" here; empty on the Hebrew page.
      GUIDE_TEXT: the strings shown by the shared script (guide.js).
      ================================================================ */
-  var VIDEO_URL = "../video/water-line-en.mp4?v=1.4";
-  var VIDEO_URL_VERTICAL = "../video/water-line-en-vertical.mp4?v=1.4";
+  var VIDEO_URL = "../video/water-line-en.mp4?v=1.6";
+  var VIDEO_URL_VERTICAL = "../video/water-line-en-vertical.mp4?v=1.6";
   var MANUAL_URL = "";
   var SERVICE_PHONE = "";
   var ASSET_BASE = "../";
@@ -60,8 +60,8 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>How to Connect the Water Line · Samsung RF65DB970E22EU</title>
-<meta name="description" content="Illustrated step-by-step guide: connecting the water line to the Samsung RF65DB970E22EU refrigerator. What is in the kit, how to connect it to the tap and to the refrigerator, checking for leaks and flushing.">
+<title>Connecting the water line to Samsung 4-door refrigerators</title>
+<meta name="description" content="Illustrated step-by-step guide: connecting the water line to Samsung 4-door refrigerators. What is in the kit, how to connect it to the tap and to the refrigerator, checking for leaks and flushing. NewPro, the official importer.">
 <link rel="canonical" href="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/en/">
 <link rel="alternate" hreflang="he" href="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/">
 <link rel="alternate" hreflang="en" href="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/en/">
@@ -70,8 +70,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="he_IL">
-<meta property="og:title" content="How to connect the water line — Samsung RF65DB970E22EU">
-<meta property="og:description" content="An illustrated guide, step by step. Newpan, the official importer.">
+<meta property="og:title" content="Connecting the water line to Samsung 4-door refrigerators">
+<meta property="og:description" content="An illustrated guide, step by step. NewPro, the official importer.">
 <meta property="og:image" content="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/img/poster.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
@@ -79,7 +79,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../guide.css?v=2">
+<link rel="stylesheet" href="../guide.css?v=3">
 </head>
 <body>
 <div class="page" id="page">
@@ -96,7 +96,7 @@
     <div class="hero-top">
       <img class="logo" src="../img/logo-samsung-blue.png" width="480" height="81" alt="Samsung">
       <div class="side">
-        <span class="tag">Installation guide · Newpan</span>
+        <span class="tag">Installation guide · NewPro</span>
         <a class="lang-switch" id="langSwitch" href="../" hreflang="he" lang="he" dir="rtl" title="המדריך בעברית"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>עברית</a>
       </div>
     </div>
@@ -105,7 +105,7 @@
       <figure class="player" id="player" aria-label="Guide video">
         <picture class="poster">
           <source media="(max-width: 959.98px)" type="image/webp" srcset="../img/hero-fridge-400.webp 400w, ../img/hero-fridge.webp 622w" sizes="62vw">
-          <img src="../img/poster.jpg" srcset="../img/poster-640.jpg 640w, ../img/poster.jpg 1280w" sizes="(min-width: 960px) 620px, 100vw" width="1280" height="720" alt="Samsung RF65DB970E22EU refrigerator, four doors, black front" fetchpriority="high">
+          <img src="../img/poster.jpg" srcset="../img/poster-640.jpg 640w, ../img/poster.jpg 1280w" sizes="(min-width: 960px) 620px, 100vw" width="1280" height="720" alt="Samsung four-door refrigerator, black front" fetchpriority="high">
         </picture>
         <span class="floor" aria-hidden="true"></span>
         <button class="play" id="play" type="button" aria-label="Play the guide video">
@@ -134,10 +134,10 @@
     </div>
 
     <div class="hero-copy">
-      <div class="model ltr">SAMSUNG · RF65DB970E22EU</div>
+      <div class="model ltr">SAMSUNG · 4 DOORS</div>
       <div class="rule"></div>
-      <h1 id="title">How to connect the water&nbsp;line to your refrigerator</h1>
-      <p class="lead">For the <strong class="ltr">Samsung RF65DB970E22EU</strong>. For the water dispenser inside the door to work, the refrigerator needs a water line. Here you can see how to connect it, step by step.</p>
+      <h1 id="title">Connecting the water&nbsp;line to Samsung 4-door refrigerators</h1>
+      <p class="lead"><strong>Fits every Samsung 4-door refrigerator with an external water connection.</strong> <a href="#models">Full list of models below</a>. For the water dispenser inside the door to work, the refrigerator needs a water line. Here you can see how to connect it, step by step.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#steps">Installation steps
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
@@ -180,7 +180,7 @@
             <span class="badge-ic" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             </span>
-            <p><strong>A simple connection, step by step.</strong> For service and more information: <a href="https://www.newpan.co.il/" target="_blank" rel="noopener">Newpan, the official importer</a>.</p>
+            <p><strong>A simple connection, step by step.</strong> For service and more information: <a href="https://newpro.co.il/" target="_blank" rel="noopener">NewPro, the official importer</a>.</p>
           </div>
         </div>
         <div class="b prep">
@@ -482,7 +482,34 @@
       </div>
     </section>
 
-    <!-- ===== 5. troubleshooting ===== -->
+    <!-- ===== 5. compatible models ===== -->
+    <section class="sec models" id="models" aria-labelledby="models-title">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <p class="eyebrow">Which refrigerator</p>
+          <h2 id="models-title">Compatible models</h2>
+          <div class="rule"></div>
+          <p class="intro">The guide on this page and in the video applies to these models:</p>
+        </div>
+        <div class="models-card card rv">
+          <ul class="models-list" aria-label="List of models">
+            <li>RF88DB9623BK</li>
+            <li>RF87DG9817B1</li>
+            <li>RF82DG9621SR</li>
+            <li>RF72DG9620B1/SR</li>
+            <li>RF65DB970E22EU</li>
+            <li>RF62C7058SR</li>
+            <li>RF59C701EB1</li>
+          </ul>
+          <p class="models-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
+            <span>The model shown in the video: <b class="ltr">RF65DB970E22EU</b></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. troubleshooting ===== -->
     <section class="sec" id="help" aria-labelledby="help-title">
       <div class="wrap">
         <div class="sec-head rv">
@@ -498,7 +525,7 @@
             </div>
             <div class="qa card rv">
               <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s-5 5.4-5 9a5 5 0 0 0 10 0c0-3.6-5-9-5-9z"/><path d="M12 20.5v1"/></svg>A drip at one of the connections?</h3>
-              <p>Check that the nut is tightened firmly, but don&#39;t over-tighten. If the leak doesn&#39;t stop, close the main water tap and <a href="https://www.newpan.co.il/" target="_blank" rel="noopener">contact Newpan service</a>.</p>
+              <p>Check that the nut is tightened firmly, but don&#39;t over-tighten. If the leak doesn&#39;t stop, close the main water tap and <a href="https://newpro.co.il/" target="_blank" rel="noopener">contact NewPro service</a>.</p>
             </div>
             <div class="qa card rv">
               <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14l-1.6 16.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M5.8 9h12.4"/></svg>How do you know the flow is normal?</h3>
@@ -510,7 +537,7 @@
       </div>
     </section>
 
-    <!-- ===== 6. manual + disclaimer ===== -->
+    <!-- ===== 7. manual + disclaimer ===== -->
     <section class="sec" id="manual" aria-labelledby="manual-title">
       <div class="wrap">
         <div class="manual card">
@@ -520,7 +547,7 @@
             </span>
             <div>
               <h3 id="manual-title">The full user manual</h3>
-              <p>All the manufacturer&#39;s instructions and warnings for this model. The water-line connection is on pages <span class="ltr">42–43</span>.</p>
+              <p>All the manufacturer&#39;s instructions and warnings for the model shown in the video. The water-line connection is on pages <span class="ltr">42–43</span>.</p>
             </div>
           </div>
           <a class="btn btn-primary" id="manual-btn" href="#manual" aria-disabled="true">The user manual is coming soon</a>
@@ -531,16 +558,15 @@
   </main>
 </div>
 
-<!-- ===== 7. footer ===== -->
+<!-- ===== 8. footer ===== -->
 <footer class="site-footer">
   <div class="wrap">
     <img class="logo" src="../img/logo-samsung-blue.png" width="480" height="81" loading="lazy" alt="Samsung">
-    <p class="who svc">For service and more information: <a href="https://www.newpan.co.il/" target="_blank" rel="noopener">Newpan, the official importer</a></p>
+    <p class="who svc">For service and more information: <a href="https://newpro.co.il/" target="_blank" rel="noopener">NewPro, the official importer</a></p>
     <p class="phone" id="phoneRow" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       <span>Customer service: <span id="phone" class="ph"></span></span>
     </p>
-    <small class="ltr">RF65DB970E22EU</small>
   </div>
 </footer>
 
@@ -558,10 +584,10 @@
 </a>
 <div class="vo" id="vo" role="dialog" aria-modal="true" aria-label="Guide video, portrait" hidden>
   <button class="vo-x" id="voClose" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Close</button>
-  <p class="vo-t">How to connect the water line to the refrigerator</p>
+  <p class="vo-t">Connecting the water line to Samsung 4-door refrigerators</p>
 </div>
 
 <script src="../guide.js?v=2"></script>
-<script src="../assistant/assistant.js?v=3" data-lang="en" defer></script>
+<script src="../assistant/assistant.js?v=4" data-lang="en" defer></script>
 </body>
 </html>

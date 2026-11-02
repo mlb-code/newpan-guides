@@ -1,4 +1,4 @@
-/* Newpan guide assistant widget — standalone, loaded by assistant.js.
+/* NewPro guide assistant widget — standalone, loaded by assistant.js.
    Direction comes from the dir attribute on .nla-root (rtl on the Hebrew page, ltr on the English page): text and paddings
    use logical properties. The launcher ("Ask AI" pill), teaser and desktop window sit at the PHYSICAL bottom-left on both
    pages (Meir, 29.10: left is the comfortable side on mobile and desktop). The guide's own "to the video" pill and chapter

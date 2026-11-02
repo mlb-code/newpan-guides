@@ -1,4 +1,4 @@
-/* Samsung RF65DB970E22EU water-line guide: one stylesheet for the Hebrew (RTL) page and the English (LTR) page.
+/* Samsung 4-door water-line guide: one stylesheet for the Hebrew (RTL) page and the English (LTR) page.
    Positions use logical properties (inline-start/end), so the layout mirrors with the html dir attribute.
    [dir="ltr"] rules are the few places where that is not enough (safe-area env() and the tap graphic). */
 :root {
@@ -397,6 +397,19 @@ h2 { font-size: clamp(28px, 8vw, 42px); line-height: 1.1; font-weight: 800; marg
 .js .done.full .done-t, .js .done.full .done-p { opacity: 1; transform: none; }
 .js .done.full .done-p { transition-delay: 1.15s; }
 
+/* ---------- compatible models: chips, always LTR (model numbers) ---------- */
+.models .sec-head { margin-bottom: 18px; }
+.models-card { padding: 18px; }
+.models-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.models-list li {
+  direction: ltr; unicode-bidi: isolate; display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px;
+  border-radius: 999px; background: var(--blue-50); color: var(--blue-ink); font-size: 16px; font-weight: 700; letter-spacing: .04em;
+  font-variant-numeric: tabular-nums; box-shadow: inset 0 0 0 1.5px var(--blue-100); white-space: nowrap;
+}
+.models-note { display: flex; align-items: center; gap: 10px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+.models-note svg { width: 20px; height: 20px; flex: 0 0 auto; color: var(--blue); }
+.models-note b { color: var(--ink); font-weight: 700; letter-spacing: .03em; }
+
 /* ---------- troubleshooting / manual / footer ---------- */
 .trouble { display: grid; gap: 16px; }
 .qa-list { display: grid; gap: 12px; }
@@ -541,6 +554,9 @@ h2 { font-size: clamp(28px, 8vw, 42px); line-height: 1.1; font-weight: 800; marg
   .done { padding-top: 130px; }
   .glass-wrap { width: 180px; }
 
+  .models-card { padding: 24px 28px; }
+  .models-list { gap: 12px; }
+  .models-list li { font-size: 17px; min-height: 46px; padding: 0 20px; }
   .trouble { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 28px; align-items: start; }
   .trouble-media { position: sticky; top: 24px; }
   .manual { grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: 26px 28px; column-gap: 28px; }

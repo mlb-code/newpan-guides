@@ -1,4 +1,4 @@
-/* Newpan guide assistant — chat widget for the Samsung RF65DB970E22EU guide page.
+/* NewPro guide assistant — chat widget for the Samsung 4-door water-line guide page.
    Load with one line: <script src="assistant/assistant.js" defer></script>
    (assistant.css next to this file is loaded automatically).
    Language: Hebrew by default. On the English page: <script src="../assistant/assistant.js" data-lang="en" defer></script>
@@ -27,7 +27,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
   var LANG = String((script && script.getAttribute("data-lang")) || d.documentElement.lang || "he").slice(0, 2).toLowerCase() === "en" ? "en" : "he";
   var TEXT = {
     he: {
-      greeting: "היי! אני העוזר של מקרר Samsung RF65DB970E22EU 👋 אפשר לשאול אותי כל שאלה על חיבור קו המים, ההתקנה והשימוש במקרר — אני עונה לפי חוברת ההדרכה.",
+      greeting: "היי! אני העוזר של מקררי 4 הדלתות של Samsung 👋 אפשר לשאול אותי כל שאלה על חיבור קו המים, ההתקנה והשימוש במקרר — אני עונה לפי חוברת ההדרכה.",
       suggestions: ["כמה זמן לחכות לפני שמכניסים אוכל?", "מה עושים אחרי שמחברים את קו המים?", "איך מחליפים את מסנן המים?"],
       offline: "העוזר לא זמין כרגע. נסה שוב בעוד רגע.",
       fab: "שאל את ה-AI: העוזר הדיגיטלי של המקרר",
@@ -44,7 +44,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
       server: null
     },
     en: {
-      greeting: "Hi! I'm the assistant for the Samsung RF65DB970E22EU refrigerator 👋 Ask me anything about connecting the water line, installing and using the refrigerator — I answer from the user manual.",
+      greeting: "Hi! I'm the assistant for Samsung 4-door refrigerators 👋 Ask me anything about connecting the water line, installing and using the refrigerator — I answer from the user manual.",
       suggestions: ["How long should I wait before putting food in?", "What do I do after connecting the water line?", "How do I replace the water filter?"],
       offline: "The assistant isn't available right now. Please try again in a moment.",
       fab: "Ask AI: the refrigerator's digital assistant",
@@ -59,10 +59,10 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
       typing: "Typing…", retry: "Try again",
       // the server's own messages are Hebrew: shown in English here, by their error code
       server: {
-        refusal: "Sorry, I can't answer that here. You can ask me about installing and using the refrigerator; for anything else, please contact Newpan customer service.",
+        refusal: "Sorry, I can't answer that here. You can ask me about installing and using the refrigerator; for anything else, please contact NewPro customer service.",
         bad_request: "The question is empty or too long (up to 500 characters).",
         rate_limit: "You've asked many questions in a short time. Please try again in a few minutes.",
-        daily_cap: "The assistant is busy today. Please try again tomorrow, or contact Newpan customer service.",
+        daily_cap: "The assistant is busy today. Please try again tomorrow, or contact NewPro customer service.",
         busy: "The assistant is busy right now. Please try again in a minute.",
         upstream: "Something went wrong. Please try again in a moment."
       }
@@ -119,7 +119,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
 
   /* --- styles --- */
   var css = d.createElement("link");
-  css.rel = "stylesheet"; css.href = BASE + "assistant.css?v=3";
+  css.rel = "stylesheet"; css.href = BASE + "assistant.css?v=4";
   d.head.appendChild(css);
 
   /* --- DOM --- */

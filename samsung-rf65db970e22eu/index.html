@@ -38,14 +38,14 @@
                 "איך לצפות?" (לאורך / לרוחב). ריק, או שהקובץ לא נמצא = מנגנים לרוחב ישר, בלי לשאול.
      הדף הזה כולו בעברית, והסרטון בעברית (v1.5). הגרסה האנגלית, עם הסרטון באנגלית, בתיקייה en/.
      MANUAL_URL: קישור ל-PDF של חוברת ההדרכה (ריק = "בקרוב").
-     SERVICE_PHONE: טלפון שירות להצגה, למשל "*1234" או "03-0000000" (ריק = שורת הטלפון לא מוצגת; בפוטר יש קישור לאתר ניופאן).
+     SERVICE_PHONE: טלפון שירות להצגה, למשל "*1234" או "03-0000000" (ריק = שורת הטלפון לא מוצגת; בפוטר יש קישור לאתר ניופרו).
      ASSET_BASE: הנתיב לתיקיית הדף (img/, video/). כאן ריק; בדף האנגלי "../".
      VIDEO_POSTER: תמונת הפתיחה של הנגן. כאן הפוסטר העברי (img/he/); בדף האנגלי אין, והסקריפט לוקח img/poster.jpg.
      תמונות השלבים עם טקסט על המסך נמצאות ב-img/he/ (מהסרטון העברי); תמונות בלי טקסט (ערכה, מקרר) משותפות ב-img/.
      GUIDE_TEXT: הטקסטים שהסקריפט המשותף (guide.js) מציג.
      ================================================================ */
-  var VIDEO_URL = "video/water-line-he.mp4?v=1.5";
-  var VIDEO_URL_VERTICAL = "video/water-line-he-vertical.mp4?v=1.5";
+  var VIDEO_URL = "video/water-line-he.mp4?v=1.6";
+  var VIDEO_URL_VERTICAL = "video/water-line-he-vertical.mp4?v=1.6";
   var MANUAL_URL = "";
   var SERVICE_PHONE = "";
   var ASSET_BASE = "";
@@ -63,8 +63,8 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>איך מחברים את קו המים למקרר · Samsung RF65DB970E22EU</title>
-<meta name="description" content="מדריך מצולם, שלב אחרי שלב: חיבור קו המים למקרר Samsung RF65DB970E22EU — מה בערכה, איך מחברים לברז ולמקרר, בדיקת נזילות ושטיפה.">
+<title>חיבור קו המים למקררי 4 דלתות של Samsung</title>
+<meta name="description" content="מדריך מצולם, שלב אחרי שלב: חיבור קו המים למקררי 4 דלתות של Samsung — מה בערכה, איך מחברים לברז ולמקרר, בדיקת נזילות ושטיפה. ניופרו, היבואן הרשמי.">
 <link rel="canonical" href="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/">
 <link rel="alternate" hreflang="he" href="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/">
 <link rel="alternate" hreflang="en" href="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/en/">
@@ -73,8 +73,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:title" content="איך מחברים את קו המים למקרר — Samsung RF65DB970E22EU">
-<meta property="og:description" content="מדריך מצולם, שלב אחרי שלב. ניופאן — היבואן הרשמי.">
+<meta property="og:title" content="חיבור קו המים למקררי 4 דלתות של Samsung">
+<meta property="og:description" content="מדריך מצולם, שלב אחרי שלב. ניופרו — היבואן הרשמי.">
 <meta property="og:image" content="https://mlb-code.github.io/newpan-guides/samsung-rf65db970e22eu/img/he/poster.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
@@ -82,7 +82,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="guide.css?v=2">
+<link rel="stylesheet" href="guide.css?v=3">
 </head>
 <body>
 <div class="page" id="page">
@@ -99,7 +99,7 @@
     <div class="hero-top">
       <img class="logo" src="img/logo-samsung-blue.png" width="480" height="81" alt="Samsung">
       <div class="side">
-        <span class="tag">מדריך התקנה · ניופאן</span>
+        <span class="tag">מדריך התקנה · ניופרו</span>
         <a class="lang-switch" id="langSwitch" href="en/" hreflang="en" lang="en" dir="ltr" title="This guide in English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>English</a>
       </div>
     </div>
@@ -108,7 +108,7 @@
       <figure class="player" id="player" aria-label="סרטון ההדרכה">
         <picture class="poster">
           <source media="(max-width: 959.98px)" type="image/webp" srcset="img/hero-fridge-400.webp 400w, img/hero-fridge.webp 622w" sizes="62vw">
-          <img src="img/he/poster.jpg" srcset="img/he/poster-640.jpg 640w, img/he/poster.jpg 1280w" sizes="(min-width: 960px) 620px, 100vw" width="1280" height="720" alt="מקרר Samsung RF65DB970E22EU, ארבע דלתות, בחזית שחורה" fetchpriority="high">
+          <img src="img/he/poster.jpg" srcset="img/he/poster-640.jpg 640w, img/he/poster.jpg 1280w" sizes="(min-width: 960px) 620px, 100vw" width="1280" height="720" alt="מקרר Samsung ארבע דלתות, בחזית שחורה" fetchpriority="high">
         </picture>
         <span class="floor" aria-hidden="true"></span>
         <button class="play" id="play" type="button" aria-label="הפעלת סרטון ההדרכה">
@@ -137,10 +137,10 @@
     </div>
 
     <div class="hero-copy">
-      <div class="model ltr">SAMSUNG · RF65DB970E22EU</div>
+      <div class="model ltr">SAMSUNG · 4 DOORS</div>
       <div class="rule"></div>
-      <h1 id="title">איך מחברים את קו&nbsp;המים למקרר</h1>
-      <p class="lead">למקרר <strong class="ltr">Samsung RF65DB970E22EU</strong>. כדי שמתקן המים שבתוך הדלת יעבוד, המקרר צריך חיבור לקו מים. כאן רואים איך מחברים אותו, שלב אחרי שלב.</p>
+      <h1 id="title">חיבור קו&nbsp;המים למקררי 4&nbsp;דלתות של&nbsp;Samsung</h1>
+      <p class="lead"><strong>מתאים לכל מקרר 4 דלתות של Samsung עם חיבור מים חיצוני.</strong> <a href="#models">רשימת הדגמים המלאה למטה</a>. כדי שמתקן המים שבתוך הדלת יעבוד, המקרר צריך חיבור לקו מים. כאן רואים איך מחברים אותו, שלב אחרי שלב.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#steps">לשלבי ההתקנה
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
@@ -183,7 +183,7 @@
             <span class="badge-ic" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             </span>
-            <p><strong>חיבור פשוט, שלב אחרי שלב.</strong> לשירות ומידע נוסף: <a href="https://www.newpan.co.il/" target="_blank" rel="noopener">ניופאן, היבואן הרשמי</a>.</p>
+            <p><strong>חיבור פשוט, שלב אחרי שלב.</strong> לשירות ומידע נוסף: <a href="https://newpro.co.il/" target="_blank" rel="noopener">ניופרו, היבואן הרשמי</a>.</p>
           </div>
         </div>
         <div class="b prep">
@@ -485,7 +485,34 @@
       </div>
     </section>
 
-    <!-- ===== 5. troubleshooting ===== -->
+    <!-- ===== 5. compatible models ===== -->
+    <section class="sec models" id="models" aria-labelledby="models-title">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <p class="eyebrow">לאיזה מקרר</p>
+          <h2 id="models-title">דגמים מתאימים</h2>
+          <div class="rule"></div>
+          <p class="intro">ההדרכה בדף ובסרטון מתאימה לדגמים האלה:</p>
+        </div>
+        <div class="models-card card rv">
+          <ul class="models-list" aria-label="רשימת הדגמים">
+            <li>RF88DB9623BK</li>
+            <li>RF87DG9817B1</li>
+            <li>RF82DG9621SR</li>
+            <li>RF72DG9620B1/SR</li>
+            <li>RF65DB970E22EU</li>
+            <li>RF62C7058SR</li>
+            <li>RF59C701EB1</li>
+          </ul>
+          <p class="models-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
+            <span>הדגם שצולם בסרטון: <b class="ltr">RF65DB970E22EU</b></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. troubleshooting ===== -->
     <section class="sec" id="help" aria-labelledby="help-title">
       <div class="wrap">
         <div class="sec-head rv">
@@ -501,7 +528,7 @@
             </div>
             <div class="qa card rv">
               <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s-5 5.4-5 9a5 5 0 0 0 10 0c0-3.6-5-9-5-9z"/><path d="M12 20.5v1"/></svg>יש טפטוף באחד החיבורים?</h3>
-              <p>בודקים שהאום מהודק היטב, אבל לא מהדקים יתר על המידה. אם הנזילה לא נפסקת, סוגרים את ברז המים הראשי ו<a href="https://www.newpan.co.il/" target="_blank" rel="noopener">פונים לשירות של ניופאן</a>.</p>
+              <p>בודקים שהאום מהודק היטב, אבל לא מהדקים יתר על המידה. אם הנזילה לא נפסקת, סוגרים את ברז המים הראשי ו<a href="https://newpro.co.il/" target="_blank" rel="noopener">פונים לשירות של ניופרו</a>.</p>
             </div>
             <div class="qa card rv">
               <h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14l-1.6 16.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M5.8 9h12.4"/></svg>איך יודעים שהזרימה תקינה?</h3>
@@ -513,7 +540,7 @@
       </div>
     </section>
 
-    <!-- ===== 6. manual + disclaimer ===== -->
+    <!-- ===== 7. manual + disclaimer ===== -->
     <section class="sec" id="manual" aria-labelledby="manual-title">
       <div class="wrap">
         <div class="manual card">
@@ -523,7 +550,7 @@
             </span>
             <div>
               <h3 id="manual-title">חוברת ההדרכה המלאה</h3>
-              <p>כל ההוראות והאזהרות של היצרן לדגם הזה. חיבור קו המים מופיע בעמודים <span class="ltr">42–43</span>.</p>
+              <p>כל ההוראות והאזהרות של היצרן לדגם שצולם בסרטון. חיבור קו המים מופיע בעמודים <span class="ltr">42–43</span>.</p>
             </div>
           </div>
           <a class="btn btn-primary" id="manual-btn" href="#manual" aria-disabled="true">חוברת ההדרכה תעלה בקרוב</a>
@@ -534,16 +561,15 @@
   </main>
 </div>
 
-<!-- ===== 7. footer ===== -->
+<!-- ===== 8. footer ===== -->
 <footer class="site-footer">
   <div class="wrap">
     <img class="logo" src="img/logo-samsung-blue.png" width="480" height="81" loading="lazy" alt="Samsung">
-    <p class="who svc">שירות ומידע נוסף: <a href="https://www.newpan.co.il/" target="_blank" rel="noopener">ניופאן, היבואן הרשמי</a></p>
+    <p class="who svc">שירות ומידע נוסף: <a href="https://newpro.co.il/" target="_blank" rel="noopener">ניופרו, היבואן הרשמי</a></p>
     <p class="phone" id="phoneRow" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       <span>שירות לקוחות: <span id="phone" class="ph"></span></span>
     </p>
-    <small class="ltr">RF65DB970E22EU</small>
   </div>
 </footer>
 
@@ -561,10 +587,10 @@
 </a>
 <div class="vo" id="vo" role="dialog" aria-modal="true" aria-label="סרטון ההדרכה, לאורך" hidden>
   <button class="vo-x" id="voClose" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>סגירה</button>
-  <p class="vo-t">איך מחברים את קו המים למקרר</p>
+  <p class="vo-t">חיבור קו המים למקררי 4 דלתות של Samsung</p>
 </div>
 
 <script src="guide.js?v=3"></script>
-<script src="assistant/assistant.js?v=3" defer></script>
+<script src="assistant/assistant.js?v=4" defer></script>
 </body>
 </html>
