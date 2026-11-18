@@ -1,6 +1,6 @@
 /* Haier HRF-5800BS water-line guide (v2): shared page script for the Hebrew page and the English page.
    Visible strings come from GUIDE_TEXT in the page head; the direction comes from the html dir attribute.
-   Player logic: VIDEO_URL / VIDEO_URL_VERTICAL / "how do you want to watch?" (same behaviour as the other NewPro guides).
+   Player logic: VIDEO_URL / VIDEO_URL_VERTICAL / "how do you want to watch?" (same behaviour as the other Newpan guides).
    Chapters: an interactive split screen — one sticky picture per chapter, the step list switches it (scroll, click, keyboard). */
 (function () {
   "use strict";
