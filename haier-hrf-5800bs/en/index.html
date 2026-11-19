@@ -31,13 +31,13 @@
      Page settings: the only place to change
      VIDEO_URL: empty = poster only. A YouTube link = embedded YouTube player. Any other link (.mp4) = <video> player.
      VIDEO_URL_VERTICAL: the same video in portrait (9:16). When present, "Play" asks "How do you want to watch?". Empty or missing = play landscape directly.
-     The video (v2.2) has English narration with Hebrew subtitles; both pages play the same files for now.
+     English page: English narration with Hebrew subtitles (v2.5). The Hebrew page plays the full Hebrew version.
      MANUAL_URL: link to the user manual PDF (empty = button not shown).
      SERVICE_PHONE: service phone (empty = line not shown; the footer links to Newpan).
      ASSET_BASE: path to the guide folder (img/, video/). "../" here, "" on the Hebrew page.
      ================================================================ */
-  var VIDEO_URL = "../video/water-line-en.mp4?v=2.3";
-  var VIDEO_URL_VERTICAL = "../video/water-line-en-vertical.mp4?v=2.3";
+  var VIDEO_URL = "../video/water-line-en.mp4?v=2.5";
+  var VIDEO_URL_VERTICAL = "../video/water-line-en-vertical.mp4?v=2.5";
   var MANUAL_URL = "";
   var SERVICE_PHONE = "";
   var ASSET_BASE = "../";
@@ -59,7 +59,7 @@
 <link rel="alternate" hreflang="he" href="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/">
 <link rel="alternate" hreflang="en" href="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/en/">
 <link rel="alternate" hreflang="x-default" href="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/">
-<meta name="theme-color" content="#005AAB">
+<meta name="theme-color" content="#1D3F78">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="he_IL">
@@ -68,7 +68,7 @@
 <meta property="og:image" content="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/img/poster.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23005AAB'/%3E%3Cpath d='M16 6s-7 7.6-7 12.6a7 7 0 0 0 14 0C23 13.6 16 6 16 6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231D3F78'/%3E%3Cpath d='M16 6s-7 7.6-7 12.6a7 7 0 0 0 14 0C23 13.6 16 6 16 6z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -81,7 +81,7 @@
   <header class="hero" id="top">
     <div class="wrap">
       <div class="hero-top">
-        <img class="logo" src="../img/logo-haier-white.png" width="1952" height="552" alt="Haier">
+        <img class="logo" src="../img/logo-haier-white.png" srcset="../img/logo-haier-white-300.png 300w, ../img/logo-haier-white.png 600w" sizes="140px" width="600" height="216" alt="Haier">
         <div class="side">
           <span class="tag">Installation guide · Newpan</span>
           <a class="lang-switch" id="langSwitch" href="../" hreflang="he" lang="he" dir="rtl" title="המדריך הזה בעברית"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>עברית</a>
@@ -132,7 +132,7 @@
   <!-- ===== progress dots ===== -->
   <nav class="dots" id="dotsNav" aria-label="Guide chapters">
     <div class="wrap">
-      <img class="mini" src="../img/logo-haier-blue.png" width="1952" height="552" alt="">
+      <img class="mini" src="../img/logo-haier-blue.png" srcset="../img/logo-haier-blue-300.png 300w, ../img/logo-haier-blue.png 600w" sizes="70px" width="600" height="216" alt="">
       <ol>
         <li data-secs="intro,kit"><a href="#intro"><i class="d"></i><span>Intro</span></a></li>
         <li data-secs="supply"><a href="#supply"><i class="d"></i><span>Water supply</span></a></li>
@@ -276,7 +276,7 @@
 <!-- ===== footer: the end card ===== -->
 <footer class="site-footer" id="siteFooter">
   <div class="wrap">
-    <img class="logo" src="../img/logo-haier-white.png" width="1952" height="552" alt="Haier">
+    <img class="logo" src="../img/logo-haier-white.png" srcset="../img/logo-haier-white-300.png 300w, ../img/logo-haier-white.png 600w" sizes="140px" width="600" height="216" alt="Haier">
     <p class="f-lead">For service and more information</p>
     <p class="f-name">Newpan — Official Importer</p>
     <div class="f-actions">
@@ -297,5 +297,6 @@
 </div>
 
 <script src="../haier.js" defer></script>
+<script src="../../assistant/assistant.js?v=5" data-product="haier" data-lang="en" defer></script>
 </body>
 </html>

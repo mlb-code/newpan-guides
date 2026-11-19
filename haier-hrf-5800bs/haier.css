@@ -1,16 +1,16 @@
 /* Haier HRF-5800BS · water-line guide (v2). Shared by the Hebrew page (RTL) and the English page (LTR).
-   Visual language = the v2.2 video ("Haier catalogue"): Rubik, white/#F3F6FA background, Haier blue #005AAB, dark-blue opening/closing
+   Visual language = the v2.2 video ("Haier catalogue"): Rubik, white/#F3F6FA background, Haier blue #1D3F78 (official), dark-blue opening/closing
    cards, a split screen (picture + instruction panel) per chapter, numbered circles, progress dots.
    Type scale: --t1 hero title · --t2 section/chapter titles · body 16/15 · small 13.5. */
 :root {
   color-scheme: light;
-  --blue: #005AAB; --blue-dark: #003C7A; --blue-fill: #EAF2FB; --blue-soft: #8EB3DA;
+  --blue: #1D3F78; --blue-dark: #142E5C; --blue-fill: #E9EEF6; --blue-soft: #9DB1D1;   /* official Haier blue (sampled from the logo, 19.11) */
   --ink: #0F1B2D; --muted: #5A6B80; --faint: #9AA8B8; --line: #D9E1EA; --ring: #C9D3DF;
   --bg: #F3F6FA; --paper: #FFFFFF; --red: #C8102E;
   --shadow: 0 1px 2px rgba(15, 27, 45, .05), 0 8px 24px rgba(15, 27, 45, .07);
   --nav-h: 52px; --r: 18px; --gap: 14px;
   --t1: clamp(30px, 7.6vw, 50px); --t2: clamp(22px, 5.4vw, 30px);
-  --dark: linear-gradient(120deg, #005AAB 0%, #004A8F 55%, #003C7A 100%);
+  --dark: linear-gradient(120deg, #1D3F78 0%, #193864 55%, #142E5C 100%);
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -28,14 +28,14 @@ button { font: inherit; color: inherit; }
 .ltr { direction: ltr; unicode-bidi: isolate; }
 .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 16px; }
-:focus-visible { outline: 3px solid #2F7FD1; outline-offset: 2px; border-radius: 8px; }
+:focus-visible { outline: 3px solid #4C72B2; outline-offset: 2px; border-radius: 8px; }
 .t2 { margin: 0; font-size: var(--t2); line-height: 1.15; font-weight: 700; letter-spacing: -.01em; }
 .kbd { display: inline-block; padding: 0 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; background: #F7F9FC; font-size: .9em; font-weight: 500; color: var(--ink); direction: ltr; unicode-bidi: isolate; line-height: 1.5; }
 
 /* ================= hero: the opening card ================= */
 .hero { position: relative; background: var(--dark); color: #fff; overflow: hidden; }
 .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0 4px; }
-.hero-top .logo { width: 104px; height: auto; }
+.hero-top .logo { width: 112px; height: auto; }
 .hero-top .side { display: flex; align-items: center; gap: 8px 14px; }
 .hero-top .tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.72); font-weight: 500; display: none; }
 .lang-switch {
@@ -63,8 +63,8 @@ button { font: inherit; color: inherit; }
 /* the player */
 .hero-stage { min-width: 0; }
 .player {
-  position: relative; margin: 0; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #002B5C;
-  box-shadow: 0 18px 44px rgba(0, 20, 50, .35), 0 2px 6px rgba(0, 20, 50, .25); isolation: isolate;
+  position: relative; margin: 0; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #0F2347;
+  box-shadow: 0 18px 44px rgba(10, 24, 50, .35), 0 2px 6px rgba(10, 24, 50, .25); isolation: isolate;
 }
 .player .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .3s; }
 .player video, .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
@@ -91,7 +91,7 @@ button { font: inherit; color: inherit; }
 .player-note svg { width: 15px; height: 15px; flex: 0 0 auto; margin-top: 2px; }
 
 /* "how do you want to watch?" */
-.chooser { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px; background: rgba(0, 43, 92, .72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.chooser { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px; background: rgba(15, 35, 71, .72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .chooser[hidden] { display: none; }
 .chooser .ch-x { position: absolute; top: 10px; inset-inline-end: 10px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(255,255,255,.92); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
 .chooser .ch-x svg { width: 16px; height: 16px; }
@@ -121,7 +121,7 @@ button { font: inherit; color: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .dots .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.dots .mini { width: 60px; height: auto; flex: 0 0 auto; }
+.dots .mini { width: 66px; height: auto; flex: 0 0 auto; }
 .dots ol { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 8px; }
 .dots li { margin: 0; }
 .dots a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--muted); font-size: 13.5px; font-weight: 500; min-height: 36px; padding: 6px 2px; }
@@ -206,7 +206,7 @@ main { padding-bottom: 8px; }
 
 /* ================= footer: the end card ================= */
 .site-footer { margin-top: 30px; color: #fff; background: var(--dark); padding: 30px 0 26px; }
-.site-footer .logo { width: 120px; height: auto; margin-bottom: 12px; }
+.site-footer .logo { width: 132px; height: auto; margin-bottom: 12px; }
 .site-footer .f-lead { margin: 0; font-size: 14.5px; color: rgba(255,255,255,.82); }
 .site-footer .f-name { margin: 2px 0 12px; font-size: var(--t2); font-weight: 700; line-height: 1.15; }
 .site-footer .f-actions { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -229,7 +229,7 @@ html:not(.js) .rv { opacity: 1; transform: none; }
 @media (min-width: 900px) {
   :root { --nav-h: 56px; }
   .hero-top { padding: 22px 0 8px; }
-  .hero-top .logo { width: 124px; }
+  .hero-top .logo { width: 136px; }
   .hero-top .tag { display: inline; }
   .hero-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: 40px; padding: 18px 0 44px; }
   .hero-copy .lead { font-size: 17px; margin-top: 16px; }

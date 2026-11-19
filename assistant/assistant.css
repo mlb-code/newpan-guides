@@ -1,0 +1,212 @@
+/* Guide assistant widget (shared copy, repo root; 19.11) — standalone, loaded by assistant.js.
+   data-product on .nla-root: "samsung" (default) or "haier" — only the page-brand accents change (user bubble, send button, chips);
+   the AI identity (violet pill, header) is the same for both brands.
+   Direction comes from the dir attribute on .nla-root (rtl on the Hebrew page, ltr on the English page): text and paddings
+   use logical properties. The launcher ("Ask AI" pill), teaser and desktop window sit at the PHYSICAL bottom-left on both
+   pages (Meir, 29.10: left is the comfortable side on mobile and desktop). The guide's own "to the video" pill and chapter
+   bar live in the same corner: assistant.js measures them and sets --nla-lift, so the launcher steps up above them
+   (bottom: 14px when the page is at the hero, above the bar + pill once they slide in). [dir="ltr"] flips the send icon. */
+.nla-root {
+  --nla-blue: #1428A0;
+  --nla-blue-2: #2E7CF6;
+  --nla-ink: #141A26;
+  --nla-muted: #5D6577;
+  --nla-line: #E3E7EF;
+  --nla-bg: #F4F6FA;
+  --nla-live: #22C55E;
+  /* AI identity: violet -> indigo -> blue, distinct from the page's Samsung blue. White text on the lightest stop (#2563EB) is 5.2:1. */
+  --nla-ai-1: #7C3AED;
+  --nla-ai-2: #4F46E5;
+  --nla-ai-3: #2563EB;
+  --nla-ai: linear-gradient(135deg, var(--nla-ai-1) 0%, var(--nla-ai-2) 55%, var(--nla-ai-3) 100%);
+  --nla-glow: rgba(109, 40, 217, .45);
+  --nla-lift: 0px;                                   /* set by assistant.js: chapter bar + "to the video" pill heights */
+  --nla-left: calc(16px + env(safe-area-inset-left));
+  --nla-bottom: calc(14px + env(safe-area-inset-bottom) + var(--nla-lift));
+  font-family: inherit;                                /* the page's font: Heebo on the Samsung guide, Rubik on the Haier guide */
+  color: var(--nla-ink);
+  -webkit-text-size-adjust: 100%;
+}
+.nla-root[data-product="haier"] { --nla-blue: #1D3F78; --nla-blue-2: #4C72B2; }
+.nla-root *, .nla-root *::before, .nla-root *::after { box-sizing: border-box; }
+.nla-root [hidden] { display: none !important; }
+
+/* ---------- launcher: "Ask AI" pill, bottom-left ---------- */
+.nla-fab {
+  position: fixed; z-index: 60; left: var(--nla-left); bottom: var(--nla-bottom);
+  display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 18px 0 14px;
+  border: 0; border-radius: 999px; cursor: pointer; isolation: isolate;
+  background: var(--nla-ai); color: #fff;
+  font: inherit; font-size: 15.5px; font-weight: 800; letter-spacing: .01em; line-height: 1; white-space: nowrap;
+  box-shadow: 0 10px 26px var(--nla-glow), 0 2px 6px rgba(37, 24, 99, .22), inset 0 1px 0 rgba(255, 255, 255, .22);
+  transition: transform .25s cubic-bezier(.2, .8, .2, 1), opacity .25s, bottom .4s cubic-bezier(.2, .8, .2, 1), box-shadow .25s, visibility 0s;
+  -webkit-tap-highlight-color: transparent;
+}
+.nla-fab:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 14px 32px var(--nla-glow), 0 2px 6px rgba(37, 24, 99, .22), inset 0 1px 0 rgba(255, 255, 255, .22); }
+.nla-fab:active { transform: scale(.97); }
+.nla-fab:focus-visible { outline: 3px solid #C4B5FD; outline-offset: 3px; }
+.nla-fab .nla-spark { flex: 0 0 auto; width: 26px; height: 26px; position: relative; z-index: 1; }
+.nla-fab .nla-spark svg { display: block; width: 26px; height: 26px; filter: drop-shadow(0 0 4px rgba(255, 255, 255, .55)); }
+.nla-fab .nla-label { position: relative; z-index: 1; padding-bottom: 1px; }
+.nla-fab .nla-label b { font-weight: 900; }
+/* soft halo behind the pill + a one-time attention ring (class is-nudge, added once by the script and removed when done) */
+.nla-fab::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--nla-ai); z-index: 0; opacity: 0;
+}
+.nla-fab.is-nudge::before { animation: nla-ring 1.3s cubic-bezier(.2, .6, .3, 1) 2; }
+.nla-fab.is-hidden, .nla-teaser.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.8); transition: opacity .2s, transform .2s, visibility 0s .2s; }
+@keyframes nla-ring {
+  0% { transform: scale(1); opacity: .55; }
+  70% { transform: scale(1.35, 1.75); opacity: 0; }
+  100% { transform: scale(1.35, 1.75); opacity: 0; }
+}
+
+/* ---------- teaser bubble (above the launcher) ---------- */
+.nla-teaser {
+  position: fixed; z-index: 60; left: calc(12px + env(safe-area-inset-left)); bottom: calc(var(--nla-bottom) + 66px);
+  max-width: min(300px, calc(100vw - 32px)); display: flex; align-items: flex-start; gap: 4px;
+  padding: 12px 10px 12px 14px; border-radius: 18px 18px 18px 6px; background: #fff; color: var(--nla-ink);
+  box-shadow: 0 16px 36px rgba(18, 28, 60, .22), 0 0 0 1px rgba(18, 28, 60, .06);
+  animation: nla-pop .45s cubic-bezier(.2, .9, .3, 1.2) both;
+}
+.nla-teaser::after {
+  content: ""; position: absolute; bottom: -7px; left: 26px; width: 14px; height: 14px; background: #fff;
+  transform: rotate(45deg); box-shadow: 3px 3px 6px rgba(18, 28, 60, .08); border-radius: 0 0 3px 0;
+}
+.nla-teaser-btn {
+  flex: 1 1 auto; min-width: 0; border: 0; background: none; padding: 0; margin: 0; cursor: pointer; text-align: start;
+  font: inherit; font-size: 15.5px; font-weight: 700; line-height: 1.35; color: inherit;
+}
+.nla-teaser-btn small { display: block; font-size: 13px; font-weight: 500; color: var(--nla-muted); margin-top: 2px; }
+.nla-teaser-btn .nla-ai-tag {
+  display: inline-block; vertical-align: 1px; margin-inline-end: 6px; padding: 2px 7px 3px; border-radius: 999px;
+  background: var(--nla-ai); color: #fff; font-size: 11.5px; font-weight: 900; letter-spacing: .04em; line-height: 1;
+}
+.nla-teaser-x {
+  flex: 0 0 auto; width: 30px; height: 30px; margin: -6px 0 0; margin-inline-start: -2px; border: 0; border-radius: 50%; background: none; color: #8A92A3;
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+}
+.nla-teaser-x:hover { background: var(--nla-bg); color: var(--nla-ink); }
+.nla-teaser-x svg { width: 16px; height: 16px; }
+@keyframes nla-pop { from { opacity: 0; transform: translateY(10px) scale(.92); } to { opacity: 1; transform: none; } }
+
+/* ---------- panel ---------- */
+.nla-panel {
+  position: fixed; z-index: 70; display: flex; flex-direction: column; overflow: hidden; background: #fff;
+  /* mobile default: full sheet from the bottom */
+  left: 0; right: 0; top: var(--nla-top, 0px); height: var(--nla-vh, 100vh);
+  padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
+  animation: nla-up .32s cubic-bezier(.2, .8, .2, 1) both;
+}
+@supports (height: 100dvh) { .nla-panel { height: var(--nla-vh, 100dvh); } }
+@keyframes nla-up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.nla-head {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 12px; padding-inline-end: 8px;
+  background: var(--nla-ai); color: #fff;
+}
+.nla-avatar {
+  flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, .16);
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.nla-avatar svg { width: 22px; height: 22px; }
+.nla-avatar::after { content: ""; position: absolute; bottom: 0; inset-inline-start: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--nla-live); border: 2px solid #5B3FE0; }
+.nla-title { flex: 1 1 auto; min-width: 0; }
+.nla-title b { display: block; font-size: 16px; font-weight: 800; line-height: 1.2; }
+.nla-title span { display: block; font-size: 12.5px; color: #E4E0FF; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nla-hbtn {
+  flex: 0 0 auto; min-height: 40px; min-width: 40px; padding: 0 10px; border: 0; border-radius: 999px; cursor: pointer;
+  background: rgba(255, 255, 255, .14); color: #fff; font: inherit; font-size: 13px; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+}
+.nla-hbtn:hover { background: rgba(255, 255, 255, .24); }
+.nla-hbtn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.nla-hbtn svg { width: 18px; height: 18px; }
+.nla-close { padding: 0; }
+
+.nla-log {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding: 16px 14px 8px; background: var(--nla-bg); display: flex; position: relative; flex-direction: column; gap: 10px;
+}
+.nla-msg { max-width: 88%; padding: 10px 14px; border-radius: 18px; font-size: 15.5px; line-height: 1.55; overflow-wrap: anywhere; }
+.nla-msg p { margin: 0 0 6px; }
+.nla-msg p:last-child { margin-bottom: 0; }
+.nla-msg ul, .nla-msg ol { margin: 4px 0 6px; padding: 0; padding-inline-start: 20px; }
+.nla-msg li { margin: 2px 0; }
+.nla-msg strong { font-weight: 800; }
+.nla-bot { align-self: flex-start; background: #fff; border-start-start-radius: 6px; box-shadow: 0 1px 2px rgba(18, 28, 60, .08); }
+.nla-user { align-self: flex-end; background: var(--nla-blue); color: #fff; border-start-end-radius: 6px; white-space: pre-wrap; }
+.nla-src { color: var(--nla-muted); font-size: 13px; }
+.nla-err { align-self: flex-start; background: #FFF4F2; color: #9A2B17; border: 1px solid #F6D3CB; }
+.nla-retry { margin-top: 6px; border: 0; background: none; padding: 0; color: var(--nla-blue); font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: underline; }
+
+.nla-typing { display: inline-flex; align-items: center; gap: 8px; color: var(--nla-muted); font-size: 14px; }
+.nla-typing i { display: inline-flex; gap: 3px; }
+.nla-typing i b { width: 6px; height: 6px; border-radius: 50%; background: #9AA3B5; animation: nla-blink 1.2s infinite ease-in-out; }
+.nla-typing i b:nth-child(2) { animation-delay: .15s; }
+.nla-typing i b:nth-child(3) { animation-delay: .3s; }
+@keyframes nla-blink { 0%, 80%, 100% { opacity: .3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+
+.nla-chips { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; margin-top: 2px; }
+.nla-chip {
+  border: 1.5px solid color-mix(in srgb, var(--nla-blue) 28%, #fff); background: #fff; color: var(--nla-blue); border-radius: 999px; padding: 8px 14px;
+  font: inherit; font-size: 14.5px; font-weight: 700; line-height: 1.3; cursor: pointer; text-align: start;
+  animation: nla-pop .35s both;
+}
+.nla-chip:hover { background: color-mix(in srgb, var(--nla-blue) 8%, #fff); border-color: var(--nla-blue); }
+.nla-chip:focus-visible { outline: 2px solid var(--nla-blue); outline-offset: 2px; }
+
+.nla-form {
+  flex: 0 0 auto; display: flex; align-items: flex-end; gap: 8px; padding: 10px 12px 6px; background: #fff; border-top: 1px solid var(--nla-line);
+}
+.nla-input {
+  flex: 1 1 auto; min-width: 0; resize: none; max-height: 120px; min-height: 46px; padding: 11px 14px; border-radius: 22px;
+  border: 1.5px solid var(--nla-line); background: var(--nla-bg); color: var(--nla-ink);
+  font: inherit; font-size: 16px; line-height: 1.4;
+}
+.nla-input:focus { outline: none; border-color: var(--nla-blue); background: #fff; }
+.nla-send {
+  flex: 0 0 auto; width: 46px; height: 46px; border: 0; border-radius: 50%; background: var(--nla-blue); color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.nla-send:disabled { background: #B9C0D0; cursor: default; }
+.nla-send:focus-visible { outline: 3px solid #8DBBFF; outline-offset: 2px; }
+.nla-send svg { width: 20px; height: 20px; transform: scaleX(-1); }
+[dir="ltr"] .nla-send svg { transform: none; }
+.nla-count { font-size: 12px; color: var(--nla-muted); padding: 0 16px; text-align: end; }
+.nla-note {
+  flex: 0 0 auto; margin: 0; padding: 4px 14px calc(8px + env(safe-area-inset-bottom)); background: #fff;
+  color: var(--nla-muted); font-size: 12px; line-height: 1.4; text-align: center;
+}
+
+/* ---------- desktop: floating window in the corner ---------- */
+@media (min-width: 720px) and (min-height: 520px) {
+  .nla-panel {
+    right: auto; top: auto; left: calc(20px + env(safe-area-inset-left)); bottom: calc(var(--cb-h, 54px) + 14px);
+    width: 380px; height: 560px; max-height: calc(100vh - var(--cb-h, 54px) - 34px);
+    border-radius: 20px; padding: 0;
+    box-shadow: 0 28px 70px rgba(18, 28, 60, .28), 0 0 0 1px rgba(18, 28, 60, .06);
+    animation: nla-in .28s cubic-bezier(.2, .8, .2, 1) both; transform-origin: bottom left;
+  }
+  .nla-note { padding-bottom: 10px; }
+  @keyframes nla-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nla-fab.is-nudge::before { animation: none; opacity: 0; }
+  .nla-fab { transition: opacity .2s, visibility 0s; }
+  .nla-fab:hover { transform: none; }
+  .nla-panel, .nla-teaser, .nla-chip { animation: none; }
+}
+
+/* very narrow phones: a slightly tighter pill */
+@media (max-width: 359px) {
+  .nla-fab { min-height: 48px; padding: 0 15px 0 12px; font-size: 14.5px; gap: 7px; }
+  .nla-fab .nla-spark, .nla-fab .nla-spark svg { width: 23px; height: 23px; }
+}
+
+/* very narrow phones: icon-only "new chat" so the title keeps its room */
+@media (max-width: 359px) {
+  .nla-new span { display: none; }
+  .nla-new { padding: 0; }
+}

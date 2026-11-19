@@ -36,12 +36,12 @@
      SERVICE_PHONE: טלפון שירות (ריק = השורה לא מוצגת; בפוטר יש קישור לאתר ניופאן).
      ASSET_BASE: הנתיב לתיקיית הדף (img/, video/). כאן ריק; בדף האנגלי "../".
      ================================================================ */
-  var VIDEO_URL = "video/water-line-en.mp4?v=2.3";
-  var VIDEO_URL_VERTICAL = "video/water-line-en-vertical.mp4?v=2.3";
+  var VIDEO_URL = "video/water-line-he.mp4?v=2.5";
+  var VIDEO_URL_VERTICAL = "video/water-line-he-vertical.mp4?v=2.5";
   var MANUAL_URL = "";
   var SERVICE_PHONE = "";
   var ASSET_BASE = "";
-  var VIDEO_POSTER = "img/poster.jpg";
+  var VIDEO_POSTER = "img/he/poster.jpg";
   var GUIDE_TEXT = {
     videoSoon: "הסרטון יעלה בקרוב",
     videoSoonShort: "הסרטון בקרוב",
@@ -59,16 +59,16 @@
 <link rel="alternate" hreflang="he" href="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/">
 <link rel="alternate" hreflang="en" href="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/en/">
 <link rel="alternate" hreflang="x-default" href="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/">
-<meta name="theme-color" content="#005AAB">
+<meta name="theme-color" content="#1D3F78">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="חיבור קו המים · Haier HRF-5800BS">
 <meta property="og:description" content="מדריך מצולם, שלב אחרי שלב. ניופאן — היבואן הרשמי.">
-<meta property="og:image" content="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/img/poster.jpg">
+<meta property="og:image" content="https://mlb-code.github.io/newpan-guides/haier-hrf-5800bs/img/he/poster.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23005AAB'/%3E%3Cpath d='M16 6s-7 7.6-7 12.6a7 7 0 0 0 14 0C23 13.6 16 6 16 6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231D3F78'/%3E%3Cpath d='M16 6s-7 7.6-7 12.6a7 7 0 0 0 14 0C23 13.6 16 6 16 6z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -81,7 +81,7 @@
   <header class="hero" id="top">
     <div class="wrap">
       <div class="hero-top">
-        <img class="logo" src="img/logo-haier-white.png" width="1952" height="552" alt="Haier">
+        <img class="logo" src="img/logo-haier-white.png" srcset="img/logo-haier-white-300.png 300w, img/logo-haier-white.png 600w" sizes="140px" width="600" height="216" alt="Haier">
         <div class="side">
           <span class="tag">מדריך התקנה · ניופאן</span>
           <a class="lang-switch" id="langSwitch" href="en/" hreflang="en" lang="en" dir="ltr" title="This guide in English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>English</a>
@@ -100,11 +100,11 @@
         </div>
         <div class="hero-stage">
           <figure class="player" id="player" aria-label="סרטון ההדרכה">
-            <img class="poster" src="img/poster.jpg" srcset="img/poster-640.jpg 640w, img/poster.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="כרטיס הפתיחה של הסרטון: מקרר Haier HRF-5800BS על רקע כחול" fetchpriority="high">
+            <img class="poster" src="img/he/poster.jpg" srcset="img/he/poster-640.jpg 640w, img/he/poster.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="כרטיס הפתיחה של הסרטון: מקרר Haier HRF-5800BS על רקע כחול" fetchpriority="high">
             <button class="play" id="play" type="button" aria-label="הפעלת סרטון ההדרכה">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
             </button>
-            <span class="play-meta" id="play-meta">צפייה בסרטון <small class="ltr" id="play-len">2:53</small></span>
+            <span class="play-meta" id="play-meta">צפייה בסרטון <small class="ltr" id="play-len">3:05</small></span>
             <button class="close" id="close" type="button" hidden>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span class="close-t">סגירה</span>
             </button>
@@ -123,7 +123,7 @@
               </div>
             </div>
           </figure>
-          <p class="player-note" id="player-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>קריינות באנגלית, כתוביות בעברית · גרסה בעברית בקרוב.</span></p>
+          <p class="player-note" id="player-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>הסרטון כולו בעברית. גרסה באנגלית זמינה בדף האנגלי.</span></p>
         </div>
       </div>
     </div>
@@ -132,7 +132,7 @@
   <!-- ===== progress dots ===== -->
   <nav class="dots" id="dotsNav" aria-label="פרקי המדריך">
     <div class="wrap">
-      <img class="mini" src="img/logo-haier-blue.png" width="1952" height="552" alt="">
+      <img class="mini" src="img/logo-haier-blue.png" srcset="img/logo-haier-blue-300.png 300w, img/logo-haier-blue.png 600w" sizes="70px" width="600" height="216" alt="">
       <ol>
         <li data-secs="intro,kit"><a href="#intro"><i class="d"></i><span>פתיחה</span></a></li>
         <li data-secs="supply"><a href="#supply"><i class="d"></i><span>אספקת מים</span></a></li>
@@ -157,7 +157,7 @@
     <!-- ===== in the kit + the 4 steps ===== -->
     <section class="sec wrap" id="kit">
       <div class="card kit rv">
-        <img src="img/kit.jpg" srcset="img/kit-640.jpg 640w, img/kit.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="ערכת קו המים: צינור לבן מגולגל; תווית על הקצה לברז (מחבר לבן) ועל הקצה למקרר (אום פליז); 'לא חותכים את הצינור'" loading="lazy">
+        <img src="img/he/kit.jpg" srcset="img/he/kit-640.jpg 640w, img/he/kit.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="ערכת קו המים: צינור לבן מגולגל; תווית על הקצה לברז (מחבר לבן) ועל הקצה למקרר (אום פליז); 'לא חותכים את הצינור'" loading="lazy">
         <div class="kit-txt">
           <h2 class="t2">מה בערכה</h2>
           <p>צינור אחד, מוכן לשימוש: בקצה אחד מחבר לבן לברז (תבריג ¾″, עם דיסקת גומי בפנים), בקצה השני אום פליז למקרר.</p>
@@ -179,9 +179,9 @@
       <div class="split">
         <div class="stage-wrap">
           <figure class="stage" aria-live="polite">
-            <img class="shot is-on" data-shot="cold" src="img/cold-only.jpg" srcset="img/cold-only-640.jpg 640w, img/cold-only.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="ברז מים קרים עם סימן וי, ברז מים חמים עם סימן איקס">
-            <img class="shot" data-shot="tap" src="img/tap.jpg" srcset="img/tap-640.jpg 640w, img/tap.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="המחבר הלבן מתברג על ברז המים; תווית: תבריג שלושה רבעי אינץ'" loading="lazy">
-            <img class="shot" data-shot="route" src="img/route.jpg" srcset="img/route-640.jpg 640w, img/route.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="צינור ישר עם וי, צינור מכופף עם איקס, רדיאטור עם איקס, וקו מידה: עד 8 מטר" loading="lazy">
+            <img class="shot is-on" data-shot="cold" src="img/he/cold-only.jpg" srcset="img/he/cold-only-640.jpg 640w, img/he/cold-only.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="ברז מים קרים עם סימן וי, ברז מים חמים עם סימן איקס">
+            <img class="shot" data-shot="tap" src="img/he/tap.jpg" srcset="img/he/tap-640.jpg 640w, img/he/tap.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="המחבר הלבן מתברג על ברז המים; תווית: תבריג שלושה רבעי אינץ'" loading="lazy">
+            <img class="shot" data-shot="route" src="img/he/route.jpg" srcset="img/he/route-640.jpg 640w, img/he/route.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="צינור ישר עם וי, צינור מכופף עם איקס, רדיאטור עם איקס, וקו מידה: עד 8 מטר" loading="lazy">
             <span class="cnt" aria-hidden="true"></span>
           </figure>
         </div>
@@ -199,10 +199,10 @@
       <div class="split">
         <div class="stage-wrap">
           <figure class="stage" aria-live="polite">
-            <img class="shot is-on" data-shot="inlet" src="img/inlet.jpg" srcset="img/inlet-640.jpg 640w, img/inlet.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="גב המקרר, עיגול סביב שסתום כניסת המים בפינה התחתונה" loading="lazy">
-            <img class="shot" data-shot="cap" src="img/cap.jpg" srcset="img/cap-640.jpg 640w, img/cap.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="תקריב על השסתום אחרי הסרת פקק הגומי: הברגת פליז חשופה" loading="lazy">
-            <img class="shot" data-shot="nut" src="img/nut.jpg" srcset="img/nut-640.jpg 640w, img/nut.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="אום הפליז של הצינור מוברג על השסתום" loading="lazy">
-            <img class="shot" data-shot="push" src="img/push.jpg" srcset="img/push-640.jpg 640w, img/push.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="המקרר חוזר למקומו ליד הקיר, הצינור מאחוריו לא נמחץ" loading="lazy">
+            <img class="shot is-on" data-shot="inlet" src="img/he/inlet.jpg" srcset="img/he/inlet-640.jpg 640w, img/he/inlet.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="גב המקרר, עיגול סביב שסתום כניסת המים בפינה התחתונה" loading="lazy">
+            <img class="shot" data-shot="cap" src="img/he/cap.jpg" srcset="img/he/cap-640.jpg 640w, img/he/cap.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="תקריב על השסתום אחרי הסרת פקק הגומי: הברגת פליז חשופה" loading="lazy">
+            <img class="shot" data-shot="nut" src="img/he/nut.jpg" srcset="img/he/nut-640.jpg 640w, img/he/nut.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="אום הפליז של הצינור מוברג על השסתום" loading="lazy">
+            <img class="shot" data-shot="push" src="img/he/push.jpg" srcset="img/he/push-640.jpg 640w, img/he/push.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="המקרר חוזר למקומו ליד הקיר, הצינור מאחוריו לא נמחץ" loading="lazy">
             <span class="cnt" aria-hidden="true"></span>
           </figure>
         </div>
@@ -221,11 +221,11 @@
       <div class="split">
         <div class="stage-wrap">
           <figure class="stage" aria-live="polite">
-            <img class="shot is-on" data-shot="check" src="img/check.jpg" srcset="img/check-640.jpg 640w, img/check.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="הברז נפתח, סימני בדיקה בשני החיבורים, והמקרר מחובר לחשמל" loading="lazy">
-            <img class="shot" data-shot="panel" src="img/panel.jpg" srcset="img/panel-640.jpg 640w, img/panel.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="פנל התצוגה של המקרר, עם תוויות על הלחצנים Water on ו-3Sec Lock" loading="lazy">
-            <img class="shot" data-shot="flush" src="img/flush.jpg" srcset="img/flush-640.jpg 640w, img/flush.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="שטיפה: כוס מתמלאת, 4 ליטר, המתנה 4 דקות, שלוש פעמים" loading="lazy">
-            <img class="shot" data-shot="ice" src="img/ice.jpg" srcset="img/ice-640.jpg 640w, img/ice.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="פנל התצוגה עם לחצן מכונת הקרח דולק, שעון 24 שעות וקוביות ראשונות לפח" loading="lazy">
-            <img class="shot" data-shot="done" src="img/done.jpg" srcset="img/done-640.jpg 640w, img/done.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="חזית המקרר, ולידו כוס עם מים וקרח" loading="lazy">
+            <img class="shot is-on" data-shot="check" src="img/he/check.jpg" srcset="img/he/check-640.jpg 640w, img/he/check.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="הברז נפתח, סימני בדיקה בשני החיבורים, והמקרר מחובר לחשמל" loading="lazy">
+            <img class="shot" data-shot="panel" src="img/he/panel.jpg" srcset="img/he/panel-640.jpg 640w, img/he/panel.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="פנל התצוגה של המקרר, עם תוויות על הלחצנים Water on ו-3Sec Lock" loading="lazy">
+            <img class="shot" data-shot="flush" src="img/he/flush.jpg" srcset="img/he/flush-640.jpg 640w, img/he/flush.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="שטיפה: כוס מתמלאת, 4 ליטר, המתנה 4 דקות, שלוש פעמים" loading="lazy">
+            <img class="shot" data-shot="ice" src="img/he/ice.jpg" srcset="img/he/ice-640.jpg 640w, img/he/ice.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="פנל התצוגה עם לחצן מכונת הקרח דולק, שעון 24 שעות וקוביות ראשונות לפח" loading="lazy">
+            <img class="shot" data-shot="done" src="img/he/done.jpg" srcset="img/he/done-640.jpg 640w, img/he/done.jpg 1280w" sizes="(min-width: 900px) 640px, 100vw" width="1280" height="720" alt="חזית המקרר, ולידו כוס עם מים וקרח" loading="lazy">
             <span class="cnt" aria-hidden="true"></span>
           </figure>
         </div>
@@ -276,7 +276,7 @@
 <!-- ===== footer: the end card ===== -->
 <footer class="site-footer" id="siteFooter">
   <div class="wrap">
-    <img class="logo" src="img/logo-haier-white.png" width="1952" height="552" alt="Haier">
+    <img class="logo" src="img/logo-haier-white.png" srcset="img/logo-haier-white-300.png 300w, img/logo-haier-white.png 600w" sizes="140px" width="600" height="216" alt="Haier">
     <p class="f-lead">לשירות ומידע נוסף</p>
     <p class="f-name">ניופאן — היבואן הרשמי</p>
     <div class="f-actions">
@@ -297,5 +297,6 @@
 </div>
 
 <script src="haier.js" defer></script>
+<script src="../assistant/assistant.js?v=5" data-product="haier" data-lang="he" defer></script>
 </body>
 </html>
