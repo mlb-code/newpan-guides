@@ -1,5 +1,5 @@
 /* Guide assistant — chat widget for the water-line guide pages (shared copy, repo root; 19.11).
-   Products: data-product="samsung" (default: the Samsung 4-door guide, importer NewPro) or data-product="haier" (Haier HRF-5800BS, importer Newpan).
+   Products: data-product="samsung" (default: the Samsung 4-door guide, importer NewPro) or data-product="haier" (Haier 4-door: HRF-5800BS/FBI/WI, importer Newpan).
    Load with one line: <script src="../assistant/assistant.js" data-product="haier" defer></script>
    (assistant.css next to this file is loaded automatically). The product is sent to the server with every question.
    Language: Hebrew by default. On the English page: <script src="../assistant/assistant.js" data-lang="en" defer></script>
@@ -74,7 +74,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
   };
   TEXTS.haier = {
     he: {
-      greeting: "היי! אני העוזר של מקרר Haier HRF-5800BS 👋 אפשר לשאול אותי כל שאלה על חיבור קו המים, ההתקנה והשימוש במקרר — אני עונה לפי חוברת ההדרכה.",
+      greeting: "היי! אני העוזר של מקררי 4 הדלתות של Haier 👋 אפשר לשאול אותי כל שאלה על חיבור קו המים, ההתקנה והשימוש במקרר — אני עונה לפי חוברת ההדרכה.",
       suggestions: ["מה עושים אחרי שמחברים את קו המים?", "איך מפעילים את ברז המים שבדלת?", "כמה זמן עד שיש קרח?"],
       offline: "העוזר לא זמין כרגע. נסה שוב בעוד רגע.",
       fab: "שאל את ה-AI: העוזר הדיגיטלי של המקרר",
@@ -90,7 +90,7 @@ var ASSISTANT_API = "https://newpan-guide-assistant-production.up.railway.app";
       server: null
     },
     en: {
-      greeting: "Hi! I'm the assistant for the Haier HRF-5800BS refrigerator 👋 Ask me anything about connecting the water line, installing and using the refrigerator — I answer from the user manual.",
+      greeting: "Hi! I'm the assistant for Haier 4-door refrigerators 👋 Ask me anything about connecting the water line, installing and using the refrigerator — I answer from the user manual.",
       suggestions: ["What do I do after connecting the water line?", "How do I turn on the door water dispenser?", "How long until there is ice?"],
       offline: "The assistant isn't available right now. Please try again in a moment.",
       fab: "Ask AI: the refrigerator's digital assistant",

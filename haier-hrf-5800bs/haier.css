@@ -48,6 +48,8 @@ button { font: inherit; color: inherit; }
 .hero-copy .eyebrow { margin: 0 0 6px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; color: rgba(255,255,255,.72); }
 .hero-copy h1 { margin: 0; font-size: var(--t1); line-height: 1.05; font-weight: 700; letter-spacing: -.01em; }
 .hero-copy .model { margin: 8px 0 0; font-size: 17px; font-weight: 500; color: rgba(255,255,255,.88); }
+.hero-copy .models { margin: 10px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 14px; color: rgba(255,255,255,.72); }
+.hero-copy .models .chip { padding: 3px 10px; border: 1px solid rgba(255,255,255,.38); border-radius: 999px; color: #fff; font-weight: 500; letter-spacing: .02em; }
 .hero-copy .lead { margin: 12px 0 0; font-size: 15.5px; color: rgba(255,255,255,.86); max-width: 46ch; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .btn {
