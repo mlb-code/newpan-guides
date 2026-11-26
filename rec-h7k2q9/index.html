@@ -49,6 +49,24 @@ html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-
 .dot.cur{outline:3px solid var(--acc);outline-offset:1px}
 .hidden{display:none!important}
 .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center;font-size:20px;margin-top:16px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin-top:4px}
+.intro h1{font-size:26px;margin:0 0 6px}
+.intro .lead{color:var(--muted);font-size:17px;margin:0 0 18px;line-height:1.6}
+.intro h2{font-size:18px;margin:20px 0 8px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0;padding:0;list-style:none}
+.steps li{background:var(--soft);border-radius:12px;padding:12px 8px;text-align:center;font-size:15px;line-height:1.35}
+.steps b{display:block;font-size:22px;margin-bottom:4px}
+.intro ul{margin:0;padding-inline-start:20px;line-height:1.75;font-size:16px}
+.intro .go{margin-top:22px}
+.links{display:flex;gap:16px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.lnk{appearance:none;border:0;background:none;color:var(--acc);font:600 16px/1.4 inherit;font-family:inherit;cursor:pointer;text-decoration:underline;padding:6px}
+.tools{display:flex;gap:14px;margin:0 0 10px;flex-wrap:wrap}
+.tools .lnk{font-size:15px;padding:0}
+dialog{position:fixed;inset:0;margin:auto;height:fit-content;border:0;border-radius:14px;padding:0;width:min(960px,calc(100vw - 24px));background:#000}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog video{display:block;width:100%;max-height:80vh}
+dialog .x{position:absolute;top:8px;inset-inline-end:8px;z-index:2;background:rgba(255,255,255,.9);border:0;border-radius:99px;width:40px;height:40px;font-size:20px;cursor:pointer}
+@media (max-width:560px){.steps{grid-template-columns:1fr}.steps li{display:flex;align-items:center;gap:12px;text-align:start;padding:10px 14px}.steps b{margin:0;min-width:44px;text-align:center}.intro h1{font-size:22px}}
 @media (max-width:560px){.line{font-size:22px}.top h1{font-size:18px}.btn{font-size:20px}}
 </style>
 </head>
@@ -56,9 +74,46 @@ html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-
 <div class="wrap">
   <div class="box hidden" id="badlink"><strong>הקישור חסר או לא תקין.</strong><br>בקשו ממאיר את הקישור המלא.</div>
 
+  <div id="intro" class="hidden">
+    <div class="intro">
+      <h1>תודה שאתה מקליט את הקריינות 🎙</h1>
+      <p class="lead">זה סרטון הדרכה של <span class="ltr">Haier</span>: איך מחברים קו מים למקרר. הסרטון מחולק ל-20 משפטים קצרים. כל משפט מקליטים מול הקטע שלו בסרטון. זה לוקח בערך 20–30 דקות, ואפשר לעצור ולהמשיך מתי שנוח.</p>
+
+      <h2>איך זה עובד</h2>
+      <ol class="steps">
+        <li><b>●</b><span>לוחצים <strong>הקלט</strong></span></li>
+        <li><b>3·2·1</b><span>הקטע מתנגן, ואתה קורא את המשפט</span></li>
+        <li><b>■</b><span>לוחצים <strong>עצור</strong></span></li>
+        <li><b>▶</b><span>ההקלטה מתנגנת עם התמונה</span></li>
+        <li><b>★</b><span>אפשר עוד טייקים ולבחור את הטוב, ואז <strong>הבא</strong></span></li>
+      </ol>
+
+      <h2>לפני שמתחילים</h2>
+      <ul>
+        <li>חדר שקט: מזגן, מאוורר וטלוויזיה כבויים.</li>
+        <li>מיקרופון במרחק של כ-20 ס"מ מהפה. מחשב עם <span class="ltr">Chrome</span> עדיף על טלפון. אוזניות לא נחוצות.</li>
+        <li>בלחיצה הראשונה על "הקלט" הדפדפן ישאל על המיקרופון. צריך לאשר.</li>
+      </ul>
+
+      <h2>טיפים לקריינות</h2>
+      <ul>
+        <li>טון רגוע וידידותי, כמו שמסבירים לחבר. לא למהר.</li>
+        <li>לא חייבים להתאים בדיוק לאורך הקטע. אם המשפט קצת ארוך, ממשיכים לדבר ועוצרים בסוף. אנחנו נתאים את הסרטון.</li>
+        <li>"<span class="ltr">Water on</span>" קוראים "ווטר און". "ניופאן" הוא היבואן.</li>
+        <li>כל טייק נשמר אצלנו מיד. הטייק המסומן ב-★ הוא זה שייכנס לסרטון.</li>
+      </ul>
+
+      <button class="btn rec go" id="startBtn">בוא נתחיל</button>
+      <div class="links"><button class="lnk fullBtn">▶ לצפייה בסרטון המלא</button></div>
+    </div>
+  </div>
+
+  <dialog id="fullDlg"><button class="x" id="fullX" aria-label="סגירה">✕</button><video id="fullV" controls playsinline preload="none" src="../haier-hrf-5800bs/video/water-line-he.mp4?v=2.6"></video></dialog>
+
   <div id="app" class="hidden">
     <div class="top"><h1>הקלטת קריינות</h1><span class="count" id="count"></span></div>
     <p class="tip">חדר שקט. לוחצים <b>הקלט</b>, קוראים את המשפט מול התמונה, ולוחצים <b>עצור</b>. אפשר כמה טייקים ולבחור את הטוב.</p>
+    <div class="tools"><button class="lnk" id="helpBtn">? הסבר</button><button class="lnk fullBtn">▶ הסרטון המלא</button></div>
     <div class="bar"><i id="bar"></i></div>
 
     <div id="work">
@@ -99,7 +154,24 @@ html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-
   const $ = s => document.querySelector(s);
   const show = (el, on) => el.classList.toggle("hidden", !on);
   if (!key) { show($("#badlink"), true); return; }
-  show($("#app"), true);
+  let seen = false;
+  try { seen = localStorage.getItem("rec-intro-seen") === "1"; } catch (e) {}
+  const openApp = () => { show($("#intro"), false); show($("#app"), true); window.scrollTo(0, 0); };
+  const openIntro = () => { if (["idle", "review", "finished"].includes(state)) { stopPlayback(); show($("#app"), false); show($("#intro"), true); window.scrollTo(0, 0); } };
+  if (seen) show($("#app"), true); else show($("#intro"), true);
+  $("#startBtn").onclick = () => { try { localStorage.setItem("rec-intro-seen", "1"); } catch (e) {} openApp(); };
+  $("#helpBtn").onclick = () => openIntro();
+  const dlg = $("#fullDlg"), fv = $("#fullV");
+  document.querySelectorAll(".fullBtn").forEach(b => b.onclick = () => {
+    if (state === "rec" || state === "count" || state === "saving") return;
+    stopPlayback();
+    if (dlg.showModal) dlg.showModal(); else window.open(fv.src, "_blank");
+    fv.play().catch(() => {});
+  });
+  const closeFull = () => { fv.pause(); dlg.close(); };
+  $("#fullX").onclick = closeFull;
+  dlg.addEventListener("close", () => fv.pause());
+  dlg.addEventListener("click", e => { if (e.target === dlg) closeFull(); });
 
   const v = $("#v"), msg = $("#msg");
   const MIME = ["audio/webm;codecs=opus", "audio/mp4", "audio/ogg;codecs=opus", "audio/webm"]
@@ -292,6 +364,7 @@ html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-
   }
 
   document.addEventListener("keydown", e => {
+    if ($("#app").classList.contains("hidden") || dlg.open) return;
     if (e.key === " " || e.key === "Enter") e.preventDefault();
     if (e.key === " ") { if (state === "idle" || state === "review") record(); else if (state === "rec") $("#stopBtn").click(); }
     if (e.key === "Enter" && state === "review") $("#okBtn").click();
@@ -301,7 +374,7 @@ html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-
     SEG = (await (await fetch("segments.json", { cache: "no-store" })).json()).segments;
     try {
       const r = await api(`/rec/${PROJECT}/status`);
-      if (r.status === 403) { show($("#app"), false); show($("#badlink"), true); return; }
+      if (r.status === 403) { show($("#app"), false); show($("#intro"), false); show($("#badlink"), true); return; }
       const j = await r.json();
       for (const [k, d] of Object.entries(j.done || {})) done[+k] = { takes: d.takes, pick: d.pick };
     } catch (e) {}
