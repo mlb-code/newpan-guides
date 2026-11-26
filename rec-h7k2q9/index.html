@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🎙%3C/text%3E%3C/svg%3E">
+<title>הקלטת קריינות · Haier</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--ink:#15171c;--muted:#5d6470;--line:#e2e5ea;--acc:#0b5cad;--rec:#d22a2a;--ok:#18804a;--soft:#eef3fa}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Heebo",Arial,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:820px;margin:0 auto;padding:16px 16px 40px}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.top h1{font-size:20px;margin:0}
+.count{font-weight:700;color:var(--muted);white-space:nowrap}
+.tip{margin:4px 0 10px;color:var(--muted);font-size:15px}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.stage{position:relative;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.stage video{width:100%;height:100%;display:block;object-fit:contain}
+.ov{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:#fff;font-weight:700;padding:16px}
+.ov.show{display:grid}
+#cnt{font-size:84px;background:rgba(0,0,0,.45)}
+#endOv{font-size:20px;background:rgba(0,0,0,.55)}
+.badge{position:absolute;top:10px;inset-inline-start:10px;display:none;align-items:center;gap:8px;background:rgba(0,0,0,.6);color:#fff;border-radius:99px;padding:6px 12px;font-weight:600;font-size:14px}
+.badge.show{display:flex}
+.badge b{width:10px;height:10px;border-radius:50%;background:var(--rec);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+.line{font-size:26px;line-height:1.55;margin:16px 0;font-weight:500;min-height:2.4em}
+.btn{appearance:none;border:0;border-radius:14px;font-family:inherit;font-weight:700;cursor:pointer;min-height:64px;font-size:22px;width:100%}
+.btn.rec{background:var(--rec);color:#fff}
+.btn.stop{background:#15171c;color:#fff}
+.btn.ok{background:var(--ok);color:#fff}
+.btn.again{background:var(--soft);color:var(--acc);font-size:18px;min-height:56px}
+.btn:disabled{opacity:.5;cursor:default}
+.two{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.takes{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}
+.takes .lbl{color:var(--muted);font-size:15px;margin-inline-end:4px}
+.take{appearance:none;border:2px solid var(--line);background:var(--card);border-radius:12px;padding:10px 14px;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;color:var(--ink);min-height:48px}
+.take.pick{border-color:var(--ok);background:#e8f5ee;color:var(--ok)}
+.take.playing{box-shadow:0 0 0 3px rgba(11,92,173,.35)}
+.msg{margin-top:12px;font-size:16px;min-height:1.3em;text-align:center}
+.msg.err{color:var(--rec);font-weight:600}
+.nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:22px}
+.dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font-weight:600;font-size:13px;font-family:inherit;cursor:pointer;padding:0}
+.dot.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.dot.cur{outline:3px solid var(--acc);outline-offset:1px}
+.hidden{display:none!important}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center;font-size:20px;margin-top:16px}
+@media (max-width:560px){.line{font-size:22px}.top h1{font-size:18px}.btn{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="box hidden" id="badlink"><strong>הקישור חסר או לא תקין.</strong><br>בקשו ממאיר את הקישור המלא.</div>
+
+  <div id="app" class="hidden">
+    <div class="top"><h1>הקלטת קריינות</h1><span class="count" id="count"></span></div>
+    <p class="tip">חדר שקט. לוחצים <b>הקלט</b>, קוראים את המשפט מול התמונה, ולוחצים <b>עצור</b>. אפשר כמה טייקים ולבחור את הטוב.</p>
+    <div class="bar"><i id="bar"></i></div>
+
+    <div id="work">
+      <div class="stage">
+        <video id="v" playsinline muted preload="auto"></video>
+        <div class="ov" id="cnt"></div>
+        <div class="ov" id="endOv">סיימו את המשפט ולחצו עצור</div>
+        <div class="badge" id="badge"><b></b><span>מקליט</span></div>
+      </div>
+      <p class="line" id="line"></p>
+
+      <button class="btn rec" id="recBtn">● הקלט</button>
+      <button class="btn stop hidden" id="stopBtn">■ עצור</button>
+      <div class="hidden" id="after">
+        <div class="takes" id="takes"></div>
+        <div class="two">
+          <button class="btn ok" id="okBtn">✓ הבא</button>
+          <button class="btn again" id="againBtn">● טייק נוסף</button>
+        </div>
+      </div>
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <div class="box hidden" id="finish">✓ כל הקטעים הוקלטו ונשמרו.<br><b>תודה רבה!</b></div>
+
+    <div class="nav" id="nav" aria-label="מעבר בין קטעים"></div>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const HASH = new URLSearchParams(location.hash.slice(1));
+  const LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const API = (LOCAL && HASH.get("api")) || "https://newpan-guide-assistant-production.up.railway.app";
+  const PROJECT = "haier-he";
+  const key = HASH.get("k") || "";
+  const $ = s => document.querySelector(s);
+  const show = (el, on) => el.classList.toggle("hidden", !on);
+  if (!key) { show($("#badlink"), true); return; }
+  show($("#app"), true);
+
+  const v = $("#v"), msg = $("#msg");
+  const MIME = ["audio/webm;codecs=opus", "audio/mp4", "audio/ogg;codecs=opus", "audio/webm"]
+    .find(m => window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) || "";
+  // done[n] = { takes: K, pick: P }
+  let SEG = [], done = {}, cur = 0, stream = null, actx = null, analyser = null;
+  let state = "idle", rec = null, chunks = [], t0 = 0, peak = 0, audio = null, safety = null, playingTake = 0;
+  const blobs = {};   // "n-k" -> Blob (טייקים שהוקלטו כאן או נטענו מהשרת)
+
+  const api = (p, o = {}) => fetch(API + p, { ...o, headers: { "X-Rec-Key": key, ...(o.headers || {}) } });
+  const say = (t, c = "") => { msg.textContent = t; msg.className = "msg " + c; };
+
+  function setState(s) {
+    state = s;
+    show($("#recBtn"), s === "idle" || s === "count");
+    show($("#stopBtn"), s === "rec");
+    show($("#after"), s === "review");
+    $("#recBtn").disabled = s === "count" || s === "saving";
+    $("#okBtn").disabled = s !== "review";
+    $("#againBtn").disabled = s !== "review";
+  }
+
+  function render() {
+    const n = Object.keys(done).length;
+    $("#bar").style.width = (100 * n / SEG.length) + "%";
+    $("#nav").innerHTML = "";
+    SEG.forEach((s, i) => {
+      const b = document.createElement("button");
+      b.className = "dot" + (done[s.n] ? " done" : "") + (i === cur ? " cur" : "");
+      b.textContent = s.n; b.title = done[s.n] ? "הוקלט" : "עוד לא הוקלט";
+      b.onclick = () => { if (["idle", "review", "finished"].includes(state)) go(i); };
+      $("#nav").appendChild(b);
+    });
+  }
+
+  function renderTakes() {
+    const s = SEG[cur], d = done[s.n], box = $("#takes");
+    box.innerHTML = "";
+    if (!d) return;
+    const l = document.createElement("span"); l.className = "lbl"; l.textContent = "הטייקים שלך:"; box.appendChild(l);
+    for (let k = 1; k <= d.takes; k++) {
+      const b = document.createElement("button");
+      b.className = "take" + (k === d.pick ? " pick" : "") + (k === playingTake ? " playing" : "");
+      b.textContent = (k === d.pick ? "★ " : "▶ ") + "טייק " + k;
+      b.title = "לשמוע עם התמונה ולבחור";
+      b.onclick = () => choose(k);
+      box.appendChild(b);
+    }
+  }
+
+  function go(i) {
+    stopPlayback();
+    cur = i; playingTake = 0;
+    const s = SEG[i];
+    show($("#work"), true); show($("#finish"), false);
+    $("#count").textContent = `קטע ${s.n} מתוך ${SEG.length}`;
+    $("#line").textContent = s.text;
+    v.src = s.clip + "#t=0.1";
+    if (done[s.n]) { setState("review"); say("★ = הטייק שנבחר. לחיצה על טייק משמיעה אותו ובוחרת בו."); }
+    else { setState("idle"); say(""); }
+    renderTakes(); render();
+  }
+
+  async function micOn() {
+    if (stream) return true;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
+    } catch (e) {
+      say("אין גישה למיקרופון. צריך לאשר את המיקרופון בדפדפן ולנסות שוב.", "err");
+      return false;
+    }
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = actx.createAnalyser(); analyser.fftSize = 1024;
+    actx.createMediaStreamSource(stream).connect(analyser);
+    const buf = new Float32Array(analyser.fftSize);
+    (function tick() {
+      if (state === "rec") { analyser.getFloatTimeDomainData(buf); for (const x of buf) peak = Math.max(peak, Math.abs(x)); }
+      requestAnimationFrame(tick);
+    })();
+    return true;
+  }
+
+  function stopPlayback() {
+    if (audio) { audio.pause(); URL.revokeObjectURL(audio.src); audio = null; }
+    v.pause();
+  }
+
+  async function getTake(n, k) {
+    const id = n + "-" + k;
+    if (!blobs[id]) {
+      const r = await api(`/rec/${PROJECT}/${n}/take/${k}`);
+      if (!r.ok) throw new Error("load");
+      blobs[id] = await r.blob();
+    }
+    return blobs[id];
+  }
+
+  async function play(n, k) {
+    stopPlayback();
+    playingTake = k; renderTakes();
+    let b;
+    try { b = await getTake(n, k); } catch (e) { say("לא הצלחתי לטעון את הטייק. נסו שוב.", "err"); return; }
+    if (SEG[cur].n !== n) return;
+    audio = new Audio(URL.createObjectURL(b));
+    audio.onended = () => { playingTake = 0; renderTakes(); };
+    v.currentTime = 0; v.play().catch(() => {}); audio.play().catch(() => {});
+  }
+
+  async function choose(k) {
+    const n = SEG[cur].n;
+    play(n, k);
+    if (done[n].pick === k) return;
+    done[n].pick = k; renderTakes();
+    say(`טייק ${k} נבחר.`);
+    try { const r = await api(`/rec/${PROJECT}/${n}/pick/${k}`, { method: "POST" }); if (!r.ok) throw 0; }
+    catch (e) { say("הבחירה לא נשמרה. לחצו שוב על הטייק.", "err"); }
+  }
+
+  async function upload(n, blob, sec) {
+    const r = await api(`/rec/${PROJECT}/${n}`, { method: "POST", headers: { "Content-Type": blob.type, "X-Rec-Sec": sec.toFixed(2) }, body: blob });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.message || "השמירה נכשלה");
+    return j.take;
+  }
+
+  async function record() {
+    setState("count");
+    if (!(await micOn())) { setState(done[SEG[cur].n] ? "review" : "idle"); return; }
+    if (actx.state === "suspended") await actx.resume();
+    stopPlayback(); say(""); v.currentTime = 0;
+    show($("#after"), false); show($("#recBtn"), true);
+    for (const c of [3, 2, 1]) { $("#cnt").textContent = c; $("#cnt").classList.add("show"); await new Promise(r => setTimeout(r, 800)); }
+    $("#cnt").classList.remove("show");
+    chunks = []; peak = 0;
+    const n = SEG[cur].n;
+    rec = new MediaRecorder(stream, MIME ? { mimeType: MIME, audioBitsPerSecond: 192000 } : undefined);
+    rec.ondataavailable = e => e.data.size && chunks.push(e.data);
+    rec.onstop = async () => {
+      clearTimeout(safety);
+      const blob = new Blob(chunks, { type: (rec.mimeType || MIME || "audio/webm").split(";")[0] });
+      const sec = (performance.now() - t0) / 1000;
+      $("#badge").classList.remove("show"); $("#endOv").classList.remove("show");
+      if (peak < 0.02) {
+        setState(done[n] ? "review" : "idle"); renderTakes();
+        say("לא נקלט קול, הטייק לא נשמר. בדקו שהמיקרופון מחובר ומאושר, והקליטו שוב.", "err");
+        return;
+      }
+      setState("saving"); say("שומר את הטייק…");
+      let k;
+      for (let tries = 0; tries < 3 && !k; tries++) {
+        try { k = await upload(n, blob, sec); } catch (e) { await new Promise(r => setTimeout(r, 1500)); }
+      }
+      if (!k) {
+        setState(done[n] ? "review" : "idle"); renderTakes();
+        say("השמירה נכשלה (בעיית אינטרנט?). הקליטו את הטייק שוב.", "err");
+        return;
+      }
+      blobs[n + "-" + k] = blob;
+      done[n] = { takes: k, pick: k };
+      setState("review"); render();
+      if (peak > 0.98) say(`טייק ${k} נשמר, אבל הקול חזק מדי ועלול להישמע צורם. כדאי להתרחק קצת ולהקליט טייק נוסף.`, "err");
+      else say(`טייק ${k} נשמר ומתנגן עכשיו. ★ = הטייק שנבחר. אפשר להקליט עוד ולבחור את הטוב.`);
+      play(n, k);
+    };
+    rec.start(); t0 = performance.now(); setState("rec");
+    v.play().catch(() => {});
+    $("#badge").classList.add("show");
+    safety = setTimeout(() => rec.state === "recording" && rec.stop(), (SEG[cur].dur + 15) * 1000);
+  }
+
+  $("#recBtn").onclick = record;
+  $("#againBtn").onclick = record;
+  $("#stopBtn").onclick = () => { if (rec && rec.state === "recording") rec.stop(); };
+  v.addEventListener("ended", () => { if (state === "rec") $("#endOv").classList.add("show"); });
+
+  $("#okBtn").onclick = () => {
+    stopPlayback();
+    const next = SEG.findIndex((x, i) => i > cur && !done[x.n]);
+    const any = SEG.findIndex(x => !done[x.n]);
+    if (next >= 0) go(next);
+    else if (any >= 0) go(any);
+    else if (cur < SEG.length - 1) go(cur + 1);
+    else finish();
+  };
+
+  function finish() {
+    state = "finished"; render();
+    show($("#work"), false); show($("#finish"), true);
+    $("#count").textContent = "סיימנו";
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === " " || e.key === "Enter") e.preventDefault();
+    if (e.key === " ") { if (state === "idle" || state === "review") record(); else if (state === "rec") $("#stopBtn").click(); }
+    if (e.key === "Enter" && state === "review") $("#okBtn").click();
+  });
+
+  (async () => {
+    SEG = (await (await fetch("segments.json", { cache: "no-store" })).json()).segments;
+    try {
+      const r = await api(`/rec/${PROJECT}/status`);
+      if (r.status === 403) { show($("#app"), false); show($("#badlink"), true); return; }
+      const j = await r.json();
+      for (const [k, d] of Object.entries(j.done || {})) done[+k] = { takes: d.takes, pick: d.pick };
+    } catch (e) {}
+    const first = SEG.findIndex(x => !done[x.n]);
+    if (first < 0) { cur = 0; finish(); } else go(first);
+  })();
+})();
+</script>
+</body>
+</html>
